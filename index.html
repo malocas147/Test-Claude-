@@ -1,500 +1,580 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Halcyon — Get paid faster</title>
-<meta name="description" content="Halcyon is invoicing, payments and client portals for independent professionals. Send an invoice in 30 seconds and get paid in days, not months.">
-<meta property="og:title" content="Halcyon — Get paid faster">
-<meta property="og:description" content="Invoicing, payments and client portals for independent professionals.">
-<meta name="theme-color" content="#0d0f12">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8b04a'/%3E%3Cpath d='M9 22V10h3v4.8h8V10h3v12h-3v-4.6h-8V22z' fill='%230d0f12'/%3E%3C/svg%3E">
+<title>Facture auto-entrepreneur gratuite — Générateur en ligne sans inscription | Facture Minute</title>
+<meta name="description" content="Créez une facture auto-entrepreneur conforme en 1 minute : mentions obligatoires incluses, TVA ou franchise (art. 293 B du CGI), PDF gratuit. Sans inscription, vos données restent sur votre appareil.">
+<!-- Après mise en ligne, décommentez et remplacez par votre vrai domaine :
+<link rel="canonical" href="https://www.votre-domaine.fr/">
+<meta property="og:url" content="https://www.votre-domaine.fr/">
+-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Facture auto-entrepreneur gratuite en 1 minute">
+<meta property="og:description" content="Générateur de factures conforme, gratuit et sans inscription. PDF prêt à envoyer.">
+<meta name="theme-color" content="#1f5f4a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f5f4a'/%3E%3Cpath d='M10 7h9l4 4v14H10z' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M13.5 15h6M13.5 19h4' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Facture Minute",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Tous (navigateur web)",
+  "inLanguage": "fr-FR",
+  "description": "Générateur de factures gratuit pour auto-entrepreneurs et freelances : mentions obligatoires, TVA ou franchise en base, export PDF, sans inscription.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Le générateur de factures est-il vraiment gratuit ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui. Vous pouvez créer et télécharger autant de factures que vous voulez, sans inscription et sans filigrane." } },
+    { "@type": "Question", "name": "Où sont stockées mes factures ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Uniquement dans votre navigateur, sur votre appareil. Rien n'est envoyé sur un serveur. Pensez à exporter une sauvegarde régulièrement, car vider les données du navigateur efface l'historique." } },
+    { "@type": "Question", "name": "Quelle mention mettre quand on ne facture pas la TVA ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En franchise en base de TVA, la facture doit porter la mention « TVA non applicable, art. 293 B du CGI ». Le générateur l'ajoute automatiquement." } },
+    { "@type": "Question", "name": "Une facture PDF suffit-elle encore avec la facturation électronique ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pour les micro-entreprises, l'obligation d'émettre des factures électroniques entre entreprises est prévue au 1er septembre 2027. D'ici là, une facture PDF conforme reste utilisable. Les factures aux particuliers ne relèvent pas de la facture électronique. Vérifiez votre situation sur impots.gouv.fr." } },
+    { "@type": "Question", "name": "Comment numéroter ses factures ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Chaque facture doit avoir un numéro unique, issu d'une séquence chronologique et continue, sans trou. Par exemple FA-2026-001, FA-2026-002, etc. Le générateur incrémente le numéro automatiquement." } }
+  ]
+}
+</script>
+
 <style>
-/* ====================================================================
-   Design tokens
-   ==================================================================== */
+/* =====================================================================
+   Tokens
+   ===================================================================== */
 :root {
-  --bg: #f7f5f0;
-  --bg-2: #efebe2;
+  --bg: #f6f7f5;
+  --bg-2: #eceee9;
   --surface: #ffffff;
-  --ink: #16181c;
-  --ink-2: #4a4f57;
-  --ink-3: #7a7f88;
-  --line: #e2ddd2;
-  --accent: #b9791a;
+  --ink: #15201b;
+  --ink-2: #4b5751;
+  --ink-3: #7b8680;
+  --line: #dde1dc;
+  --accent: #1f5f4a;
+  --accent-2: #2b7a60;
   --accent-ink: #ffffff;
-  --accent-soft: #f6e7cc;
-  --good: #2f7d4f;
-  --warn: #b0452f;
-  --radius: 14px;
-  --shadow: 0 1px 2px rgba(20,20,20,.04), 0 8px 24px rgba(20,20,20,.06);
-  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --accent-soft: #e2efe9;
+  --warn: #b3402a;
+  --warn-soft: #fbe9e4;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(15,30,25,.05), 0 8px 28px rgba(15,30,25,.08);
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d0f12; --bg-2: #14171c; --surface: #181b21; --ink: #f1efe9;
-    --ink-2: #b9bcc3; --ink-3: #868a93; --line: #262a32; --accent: #e8b04a;
-    --accent-ink: #0d0f12; --accent-soft: #2a2216; --good: #5fc28a; --warn: #f08a72;
+    --bg: #0f1412; --bg-2: #151c19; --surface: #1a221f; --ink: #edf2ef; --ink-2: #b4c0ba;
+    --ink-3: #85918b; --line: #2a3530; --accent: #4fb48f; --accent-2: #6cc8a5; --accent-ink: #0c1411;
+    --accent-soft: #1c2f28; --warn: #f0937c; --warn-soft: #3a211b;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d0f12; --bg-2: #14171c; --surface: #181b21; --ink: #f1efe9;
-  --ink-2: #b9bcc3; --ink-3: #868a93; --line: #262a32; --accent: #e8b04a;
-  --accent-ink: #0d0f12; --accent-soft: #2a2216; --good: #5fc28a; --warn: #f08a72;
+  --bg: #0f1412; --bg-2: #151c19; --surface: #1a221f; --ink: #edf2ef; --ink-2: #b4c0ba;
+  --ink-3: #85918b; --line: #2a3530; --accent: #4fb48f; --accent-2: #6cc8a5; --accent-ink: #0c1411;
+  --accent-soft: #1c2f28; --warn: #f0937c; --warn-soft: #3a211b;
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
   color-scheme: dark;
 }
 
-/* ====================================================================
+/* =====================================================================
    Base
-   ==================================================================== */
+   ===================================================================== */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
-body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-img, svg { display: block; max-width: 100%; }
-a { color: inherit; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; margin: 0; }
-h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); }
-h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
-h3 { font-size: 1.2rem; font-family: var(--sans); font-weight: 600; letter-spacing: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3 { line-height: 1.15; letter-spacing: -.02em; margin: 0; }
+h1 { font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 700; }
+h2 { font-size: clamp(1.45rem, 3.4vw, 2rem); font-weight: 700; }
+h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: 0; }
 p { margin: 0; }
-.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-@media (min-width: 720px) { .wrap { padding: 0 28px; } }
-section { padding: 88px 0; }
-.eyebrow { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-.lede { color: var(--ink-2); font-size: 1.125rem; max-width: 60ch; }
-.center { text-align: center; }
-.center .lede { margin-left: auto; margin-right: auto; }
+a { color: var(--accent); }
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 760px) { .wrap { padding: 0 28px; } }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
 .skip { position: absolute; left: -9999px; top: 8px; background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 8px; z-index: 100; }
 .skip:focus { left: 8px; }
+[hidden] { display: none !important; }
 
-/* Buttons */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 46px; padding: 0 22px; border-radius: 999px; border: 1px solid transparent;
-  font: 600 .95rem var(--sans); text-decoration: none; cursor: pointer;
-  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px;
+  border-radius: 10px; border: 1px solid transparent; font: 600 .95rem var(--sans); cursor: pointer; text-decoration: none;
+  transition: background .15s, border-color .15s, transform .1s;
 }
 .btn:active { transform: translateY(1px); }
+.btn svg { width: 18px; height: 18px; flex: none; }
 .btn-primary { background: var(--accent); color: var(--accent-ink); }
-.btn-primary:hover { filter: brightness(1.06); }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-primary:hover { background: var(--accent-2); }
+.btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--ink-3); }
+.btn-sm { min-height: 36px; padding: 0 12px; font-size: .86rem; border-radius: 8px; }
+.btn-link { background: none; border: 0; color: var(--accent); font: 600 .9rem var(--sans); cursor: pointer; padding: 6px 2px; }
+.btn-danger { color: var(--warn); }
 
-/* ====================================================================
-   Header
-   ==================================================================== */
-header.site {
-  position: sticky; top: 0; z-index: 50;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
-  border-bottom: 1px solid transparent; transition: border-color .2s;
-}
-header.site.scrolled { border-bottom-color: var(--line); }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 16px; }
-.logo { display: flex; align-items: center; gap: 10px; font: 700 1.2rem var(--serif); text-decoration: none; }
+/* =====================================================================
+   Header + hero
+   ===================================================================== */
+header.site { border-bottom: 1px solid var(--line); background: var(--surface); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; color: var(--ink); text-decoration: none; }
 .logo-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--accent); display: grid; place-items: center; }
-.logo-mark svg { width: 18px; height: 18px; }
-.nav-links { display: none; gap: 28px; font-size: .95rem; color: var(--ink-2); }
-.nav-links a { text-decoration: none; }
+.nav-links { display: none; gap: 22px; font-size: .92rem; }
+.nav-links a { color: var(--ink-2); text-decoration: none; }
 .nav-links a:hover { color: var(--ink); }
-.nav-actions { display: flex; align-items: center; gap: 8px; }
-.icon-btn { width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; }
-.icon-btn svg { width: 18px; height: 18px; }
-.nav .btn { min-height: 40px; padding: 0 16px; }
 @media (min-width: 860px) { .nav-links { display: flex; } }
-@media (max-width: 420px) { .nav .btn-ghost { display: none; } }
+.icon-btn { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.icon-btn svg { width: 18px; height: 18px; }
 
-/* ====================================================================
-   Hero
-   ==================================================================== */
-.hero { padding: 72px 0 64px; position: relative; }
-.hero-grid { display: grid; gap: 48px; align-items: center; }
-@media (min-width: 960px) { .hero-grid { grid-template-columns: 1.05fr .95fr; } }
-.hero h1 em { font-style: italic; color: var(--accent); }
-.hero .lede { margin-top: 20px; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.trust { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 22px; font-size: .88rem; color: var(--ink-3); }
-.trust span::before { content: "✓"; color: var(--good); margin-right: 6px; font-weight: 700; }
+.hero { padding: 40px 0 28px; }
+.hero p.lede { color: var(--ink-2); font-size: 1.08rem; margin-top: 12px; max-width: 62ch; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: .84rem; font-weight: 500; background: var(--accent-soft); color: var(--accent); padding: 6px 12px; border-radius: 999px; }
+.badge::before { content: "✓"; font-weight: 700; }
 
-/* Invoice mock */
-.mock {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
-  padding: 24px; position: relative; max-width: 480px; justify-self: center; width: 100%;
+/* =====================================================================
+   Tool
+   ===================================================================== */
+.tool { display: grid; gap: 20px; align-items: start; padding-bottom: 40px; }
+@media (min-width: 1040px) { .tool { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.form { padding: 6px 0; }
+fieldset { border: 0; margin: 0; padding: 18px 20px; border-bottom: 1px solid var(--line); min-width: 0; }
+fieldset:last-of-type { border-bottom: 0; }
+legend { font-weight: 700; font-size: .95rem; padding: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; float: left; width: 100%; }
+legend + * { clear: both; }
+legend .num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: .75rem; display: grid; place-items: center; flex: none; }
+.grid-2 { display: grid; gap: 12px; }
+@media (min-width: 560px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+.field { display: grid; gap: 5px; min-width: 0; }
+.field + .field, .grid-2 + .field, .field + .grid-2, .grid-2 + .grid-2, .seg + .field, .field + .seg, .seg + .grid-2, .grid-2 + .seg, .check + .field, .field + .check, details.more { margin-top: 12px; }
+.grid-2 > .field { margin-top: 0; }
+.field > span { font-size: .82rem; font-weight: 600; color: var(--ink-2); }
+.field small { color: var(--ink-3); font-size: .78rem; }
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], select, textarea {
+  width: 100%; min-height: 42px; border: 1px solid var(--line); border-radius: 9px; background: var(--bg);
+  color: var(--ink); font: 16px var(--sans); padding: 8px 11px; min-width: 0;
 }
-.mock-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-.mock-head small { color: var(--ink-3); display: block; font-size: .78rem; }
-.mock-head strong { font-size: 1.05rem; }
-.pill { font-size: .75rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
-.pill.paid { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
-.mock table { width: 100%; border-collapse: collapse; margin: 20px 0 14px; font-size: .9rem; }
-.mock td { padding: 10px 0; border-bottom: 1px dashed var(--line); }
-.mock td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
-.mock-total { display: flex; justify-content: space-between; align-items: baseline; font-weight: 600; }
-.mock-total b { font: 700 1.8rem var(--serif); font-variant-numeric: tabular-nums; }
-.mock-pay { margin-top: 18px; width: 100%; }
-.toast {
-  position: absolute; right: -8px; bottom: -22px; background: var(--ink); color: var(--bg);
-  padding: 12px 16px; border-radius: 12px; font-size: .85rem; box-shadow: var(--shadow);
-  display: flex; gap: 10px; align-items: center; opacity: 0; transform: translateY(8px);
-  transition: opacity .4s, transform .4s;
+textarea { min-height: 64px; resize: vertical; line-height: 1.4; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--warn); }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; padding: 4px; background: var(--bg-2); border-radius: 10px; }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.seg span { display: block; text-align: center; padding: 8px 6px; border-radius: 7px; font-size: .86rem; font-weight: 600; color: var(--ink-2); line-height: 1.25; }
+.seg input:checked + span { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.seg input:focus-visible + span { outline: 2px solid var(--accent); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; color: var(--ink-2); cursor: pointer; }
+.check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+details.more summary { cursor: pointer; font-size: .86rem; font-weight: 600; color: var(--accent); list-style: none; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::before { content: "+ "; }
+details.more[open] summary::before { content: "− "; }
+details.more[open] summary { margin-bottom: 12px; }
+.logo-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.logo-row img { max-height: 44px; max-width: 120px; border-radius: 6px; border: 1px solid var(--line); background: #fff; }
+
+/* Lines */
+.lines { display: grid; gap: 10px; }
+.line { display: grid; gap: 8px; grid-template-columns: 1fr 1fr 36px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+.line .desc { grid-column: 1 / -1; }
+.line .vat { grid-column: 1 / 3; }
+.line .del { grid-row: 2; grid-column: 3; align-self: end; }
+.line.has-vat .del { grid-row: 3; }
+.line label { display: grid; gap: 3px; font-size: .74rem; font-weight: 600; color: var(--ink-3); min-width: 0; }
+.line input, .line select { background: var(--surface); }
+@media (min-width: 620px) {
+  .line { grid-template-columns: minmax(0, 1fr) 70px 110px 36px; align-items: end; }
+  .line.has-vat { grid-template-columns: minmax(0, 1fr) 70px 110px 84px 36px; }
+  .line .desc, .line .vat { grid-column: auto; }
+  .line .del, .line.has-vat .del { grid-row: auto; grid-column: auto; }
 }
-.toast.show { opacity: 1; transform: none; }
-.toast i { width: 8px; height: 8px; border-radius: 50%; background: var(--good); display: inline-block; }
-@media (max-width: 520px) { .toast { right: 8px; } }
+.del { width: 36px; height: 42px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink-3); cursor: pointer; display: grid; place-items: center; }
+.del:hover { color: var(--warn); border-color: var(--warn); }
+.del svg { width: 16px; height: 16px; }
+.add-line { margin-top: 10px; }
 
-/* ====================================================================
-   Logos / stats
-   ==================================================================== */
-.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 36px 0; background: var(--bg-2); }
-.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: center; }
-@media (min-width: 720px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
-.stat b { display: block; font: 700 2rem var(--serif); font-variant-numeric: tabular-nums; }
-.stat span { color: var(--ink-3); font-size: .9rem; }
+/* Preview side */
+.side { display: grid; gap: 14px; }
+@media (min-width: 1040px) { .side { position: sticky; top: 16px; } }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.actions .btn-primary { flex: 1 1 220px; }
+.errors { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 12px 14px; font-size: .9rem; }
+.errors ul { margin: 6px 0 0; padding-left: 18px; }
+.preview-wrap { background: var(--bg-2); border-radius: 16px; padding: 14px; }
+.preview-note { font-size: .8rem; color: var(--ink-3); margin-top: 10px; text-align: center; }
 
-/* ====================================================================
-   Features
-   ==================================================================== */
-.features-grid { display: grid; gap: 18px; margin-top: 48px; }
-@media (min-width: 720px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
-.card .ico { width: 42px; height: 42px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 18px; }
-.card .ico svg { width: 22px; height: 22px; }
-.card p { color: var(--ink-2); margin-top: 8px; font-size: .96rem; }
-
-/* Steps */
-.steps { display: grid; gap: 28px; margin-top: 48px; counter-reset: step; }
-@media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
-.step { counter-increment: step; padding-top: 22px; border-top: 2px solid var(--ink); }
-.step::before { content: "0" counter(step); font: 700 .85rem var(--sans); color: var(--accent); letter-spacing: .1em; display: block; margin-bottom: 10px; }
-.step p { color: var(--ink-2); margin-top: 8px; }
-
-/* ====================================================================
-   Pricing
-   ==================================================================== */
-#pricing { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.billing { display: inline-flex; margin-top: 28px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
-.billing button { border: 0; background: transparent; color: var(--ink-2); font: 600 .9rem var(--sans); padding: 8px 18px; border-radius: 999px; cursor: pointer; min-height: 38px; }
-.billing button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-.billing .save { color: var(--good); font-size: .78rem; margin-left: 4px; }
-.billing button[aria-pressed="true"] .save { color: inherit; opacity: .8; }
-.plans { display: grid; gap: 18px; margin-top: 40px; text-align: left; }
-@media (min-width: 900px) { .plans { grid-template-columns: repeat(3, 1fr); align-items: stretch; } }
-.plan { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; }
-.plan.featured { border: 2px solid var(--accent); position: relative; box-shadow: var(--shadow); }
-.plan.featured::before { content: "Most popular"; position: absolute; top: -13px; left: 28px; background: var(--accent); color: var(--accent-ink); font-size: .75rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; }
-.plan h3 { font-size: 1.05rem; }
-.plan .desc { color: var(--ink-3); font-size: .92rem; margin-top: 4px; min-height: 2.9em; }
-.price { margin: 20px 0 6px; display: flex; align-items: baseline; gap: 6px; }
-.price b { font: 700 2.8rem var(--serif); font-variant-numeric: tabular-nums; }
-.price span { color: var(--ink-3); font-size: .9rem; }
-.price-note { color: var(--ink-3); font-size: .82rem; min-height: 1.3em; }
-.plan ul { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 10px; font-size: .94rem; flex: 1; }
-.plan li { display: flex; gap: 10px; color: var(--ink-2); }
-.plan li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 50%; background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%23b9791a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat; }
-.plan .btn { width: 100%; }
-
-/* ====================================================================
-   Revenue planner
-   ==================================================================== */
-.planner { display: grid; gap: 24px; margin-top: 44px; }
-@media (min-width: 960px) { .planner { grid-template-columns: 360px 1fr; } }
-.controls { display: grid; gap: 20px; align-content: start; }
-.field label { display: flex; justify-content: space-between; gap: 10px; font-size: .9rem; font-weight: 500; margin-bottom: 8px; }
-.field output { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 600; }
-input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
-.results { display: grid; gap: 18px; min-width: 0; }
-.kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-@media (min-width: 640px) { .kpis { grid-template-columns: repeat(4, 1fr); } }
-.kpi { background: var(--bg-2); border-radius: 12px; padding: 14px 16px; min-width: 0; }
-.kpi small { display: block; color: var(--ink-3); font-size: .78rem; }
-.kpi b { font: 700 1.35rem var(--serif); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.chart { width: 100%; height: auto; }
-.chart .grid line { stroke: var(--line); }
-.chart text { fill: var(--ink-3); font: 11px var(--sans); }
-.chart .area { fill: var(--accent); opacity: .14; }
-.chart .line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
-.chart .ceil { stroke: var(--ink-3); stroke-dasharray: 4 4; stroke-width: 1.2; }
-.reality { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; color: var(--ink-2); font-size: .95rem; }
-.reality strong { color: var(--ink); }
-
-/* ====================================================================
-   Testimonials
-   ==================================================================== */
-.quotes { display: grid; gap: 18px; margin-top: 44px; }
-@media (min-width: 860px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
-blockquote { margin: 0; }
-blockquote p { font: 500 1.12rem/1.5 var(--serif); }
-blockquote footer { margin-top: 18px; color: var(--ink-3); font-size: .88rem; }
-blockquote footer b { color: var(--ink); display: block; font-weight: 600; }
-.note { font-size: .78rem; color: var(--ink-3); margin-top: 18px; text-align: center; }
-
-/* ====================================================================
-   FAQ
-   ==================================================================== */
-.faq { max-width: 760px; margin: 40px auto 0; }
-details { border-bottom: 1px solid var(--line); }
-summary { list-style: none; cursor: pointer; padding: 22px 36px 22px 0; font-weight: 600; position: relative; }
-summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font: 400 1.5rem var(--sans); color: var(--ink-3); transition: transform .2s; }
-details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
-details p { color: var(--ink-2); padding: 0 0 22px; }
-
-/* ====================================================================
-   CTA + footer
-   ==================================================================== */
-.final { background: var(--ink); color: var(--bg); border-radius: 24px; padding: 56px 24px; text-align: center; }
-.final .lede { color: color-mix(in srgb, var(--bg) 75%, transparent); margin: 16px auto 0; }
-.signup { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 30px auto 0; max-width: 480px; }
-.signup input {
-  flex: 1 1 240px; min-height: 48px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--bg) 25%, transparent);
-  background: transparent; color: var(--bg); padding: 0 20px; font: 1rem var(--sans); min-width: 0;
+/* The invoice sheet — always paper colored */
+.sheet {
+  container-type: inline-size; background: #fff; color: #1b1f1d; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,.12);
+  aspect-ratio: 210 / 297; overflow: hidden; width: 100%;
 }
-.signup input::placeholder { color: color-mix(in srgb, var(--bg) 55%, transparent); }
-.signup .btn { flex: 0 0 auto; }
-.form-msg { min-height: 1.5em; margin-top: 14px; font-size: .92rem; }
-.form-msg.ok { color: var(--accent); }
-.form-msg.err { color: var(--warn); }
-footer.site { padding: 48px 0 40px; color: var(--ink-3); font-size: .9rem; }
-.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
-.foot nav { display: flex; flex-wrap: wrap; gap: 18px; }
-.foot a { text-decoration: none; }
-.foot a:hover { color: var(--ink); }
+.inv { font-size: clamp(7px, 1.75cqw, 13px); padding: 6.5cqw 6.5cqw; line-height: 1.45; min-height: 100%; display: flex; flex-direction: column; font-family: var(--sans); }
+.inv-top { display: flex; justify-content: space-between; gap: 2em; align-items: flex-start; }
+.inv-logo { max-height: 5em; max-width: 14em; margin-bottom: .8em; }
+.inv-from { font-size: .92em; color: #444b48; }
+.inv-from b { color: #1b1f1d; font-size: 1.1em; display: block; margin-bottom: .2em; }
+.inv-title { text-align: right; }
+.inv-title h2 { font-size: 2.2em; letter-spacing: .02em; color: #1f5f4a; font-weight: 700; }
+.inv-title dl { margin: .6em 0 0; display: grid; grid-template-columns: auto auto; gap: .15em 1em; justify-content: end; font-size: .9em; }
+.inv-title dt { color: #6b7470; }
+.inv-title dd { margin: 0; font-weight: 600; text-align: right; }
+.inv-to { margin-top: 2.2em; display: flex; justify-content: flex-end; }
+.inv-to div { min-width: 45%; background: #f3f6f4; border-radius: .5em; padding: .9em 1.1em; font-size: .95em; }
+.inv-to small { display: block; color: #6b7470; text-transform: uppercase; letter-spacing: .08em; font-size: .78em; margin-bottom: .3em; }
+.inv-to b { display: block; }
+.inv table { width: 100%; border-collapse: collapse; margin-top: 2.2em; font-size: .95em; }
+.inv th { text-align: left; font-weight: 600; color: #6b7470; font-size: .85em; text-transform: uppercase; letter-spacing: .05em; padding: .6em .4em; border-bottom: 2px solid #1f5f4a; }
+.inv td { padding: .7em .4em; border-bottom: 1px solid #e3e7e5; vertical-align: top; }
+.inv .r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.inv td.d { white-space: pre-wrap; word-break: break-word; }
+.inv-totals { margin-left: auto; margin-top: 1.2em; min-width: 48%; font-size: .98em; }
+.inv-totals div { display: flex; justify-content: space-between; gap: 2em; padding: .3em .4em; font-variant-numeric: tabular-nums; }
+.inv-totals .grand { background: #1f5f4a; color: #fff; border-radius: .4em; font-weight: 700; font-size: 1.12em; padding: .6em .7em; margin-top: .4em; }
+.inv-vatnote { text-align: right; font-size: .88em; color: #444b48; margin-top: .5em; font-style: italic; }
+.inv-pay { margin-top: 2em; font-size: .9em; color: #444b48; display: grid; gap: .3em; }
+.inv-pay b { color: #1b1f1d; }
+.inv-notes { margin-top: 1.2em; font-size: .9em; white-space: pre-wrap; color: #444b48; }
+.inv-legal { margin-top: auto; padding-top: 2em; font-size: .78em; color: #6b7470; border-top: 1px solid #e3e7e5; display: grid; gap: .25em; }
+.inv-empty { color: #a1a9a5; font-style: italic; }
 
-/* Reveal on scroll */
-.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.in { opacity: 1; transform: none; }
-.no-js .reveal { opacity: 1; transform: none; }
+/* =====================================================================
+   Content sections
+   ===================================================================== */
+section.block { padding: 56px 0; border-top: 1px solid var(--line); }
+.block .intro { color: var(--ink-2); margin-top: 10px; max-width: 70ch; }
+.history { margin-top: 20px; display: grid; gap: 8px; }
+.hrow { display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.hrow .meta { min-width: 0; }
+.hrow .meta b { display: block; }
+.hrow .meta span { color: var(--ink-3); font-size: .86rem; overflow-wrap: anywhere; }
+.hrow .amt { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.hrow .ops { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.empty { color: var(--ink-3); background: var(--surface); border: 1px dashed var(--line); border-radius: 12px; padding: 20px; text-align: center; }
+.backup { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; align-items: center; }
+.backup small { color: var(--ink-3); }
+
+.partners { display: grid; gap: 14px; margin-top: 22px; }
+@media (min-width: 760px) { .partners { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
+.partner { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.partner .tag { font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+.partner p { color: var(--ink-2); font-size: .94rem; flex: 1; }
+.partner .btn { align-self: flex-start; margin-top: 6px; }
+.disclose { font-size: .8rem; color: var(--ink-3); margin-top: 12px; }
+
+.guide { display: grid; gap: 28px; margin-top: 24px; }
+@media (min-width: 900px) { .guide { grid-template-columns: 1fr 1fr; } }
+.guide article { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.guide h3 { margin-bottom: 10px; }
+.guide ul { margin: 0; padding-left: 20px; color: var(--ink-2); display: grid; gap: 6px; font-size: .95rem; }
+.guide p { color: var(--ink-2); font-size: .95rem; }
+.guide p + p, .guide p + ul, .guide ul + p { margin-top: 10px; }
+.timeline { list-style: none; padding: 0 !important; }
+.timeline li { padding-left: 18px; position: relative; }
+.timeline li::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+.faq { margin-top: 20px; max-width: 820px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 32px 18px 0; font-weight: 600; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 1.4rem; font-weight: 400; color: var(--ink-3); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { color: var(--ink-2); padding-bottom: 18px; }
+
+footer.site { padding: 36px 0 90px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: .86rem; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 16px; }
+.foot a { color: var(--ink-2); text-decoration: none; }
+.foot p { max-width: 70ch; }
+@media (min-width: 1040px) { footer.site { padding-bottom: 36px; } }
+
+/* Mobile sticky action bar */
+.mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: flex; gap: 8px; align-items: center; }
+.mbar .total { flex: 1; min-width: 0; font-size: .8rem; color: var(--ink-3); }
+.mbar .total b { display: block; color: var(--ink); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+@media (min-width: 1040px) { .mbar { display: none; } }
+
+/* Dialog */
+dialog { border: 0; border-radius: 18px; padding: 0; width: min(460px, calc(100vw - 32px)); background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+dialog::backdrop { background: rgba(10, 20, 15, .55); }
+.dlg { padding: 26px 22px 22px; display: grid; gap: 14px; }
+.dlg .ok { width: 48px; height: 48px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-size: 1.4rem; font-weight: 700; }
+.dlg p { color: var(--ink-2); font-size: .95rem; }
+.dlg .partner { padding: 16px; }
+.dlg-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.dlg-actions .btn { flex: 1 1 140px; }
+
+.toast { position: fixed; left: 50%; bottom: 90px; transform: translate(-50%, 20px); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: .9rem; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 60; max-width: calc(100vw - 32px); }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* =====================================================================
+   Print: only the invoice
+   ===================================================================== */
+#printArea { display: none; }
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff !important; }
+  body > *:not(#printArea) { display: none !important; }
+  #printArea { display: block; }
+  #printArea .sheet { box-shadow: none; border-radius: 0; aspect-ratio: auto; width: 210mm; min-height: 297mm; overflow: visible; }
+  #printArea .inv { font-size: 10pt; padding: 16mm 15mm; min-height: 297mm; }
+  #printArea .inv-totals .grand, #printArea .inv-to div, #printArea th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
 </style>
 </head>
-<body class="no-js">
-<a class="skip" href="#main">Skip to content</a>
+<body>
+<a class="skip" href="#outil">Aller à l'outil</a>
 
-<header class="site" id="top">
+<header class="site">
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="Halcyon home">
-      <span class="logo-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 26V6h4.5v8h9V6H25v20h-4.5v-8h-9v8z" fill="var(--accent-ink)"/></svg></span>
-      <span data-cfg="brand">Halcyon</span>
+    <a class="logo" href="#" aria-label="Accueil">
+      <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 6h9l5 5v15H10z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><path d="M13.5 15h7M13.5 20h5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+      <span data-brand>Facture Minute</span>
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#features">Features</a>
-      <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#planner">Revenue planner</a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#outil">Créer une facture</a>
+      <a href="#historique">Mes factures</a>
+      <a href="#guide">Mentions obligatoires</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <div class="nav-actions">
-      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle color theme">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-      <a class="btn btn-ghost" href="#signup">Sign in</a>
-      <a class="btn btn-primary" href="#pricing">Start free</a>
-    </div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Changer le thème clair / sombre">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
   </div>
 </header>
 
-<main id="main">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Invoicing for independents</p>
-        <h1>Do the work.<br>Get paid <em>this week</em>.</h1>
-        <p class="lede">Halcyon turns your proposals into invoices, your invoices into payments, and your clients into repeat clients. One link. Cards, bank transfer and Apple Pay. Automatic, polite reminders so you never chase a payment again.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#pricing">Start free — no card needed</a>
-          <a class="btn btn-ghost" href="#how">See how it works</a>
-        </div>
-        <div class="trust"><span>Free plan forever</span><span>Set up in 3 minutes</span><span>Cancel anytime</span></div>
-      </div>
-
-      <div class="mock" aria-label="Example invoice">
-        <div class="mock-head">
-          <div><small>Invoice #1042 · Due in 7 days</small><strong>Brand refresh, phase 2</strong></div>
-          <span class="pill" id="mockStatus">Awaiting payment</span>
-        </div>
-        <table>
-          <tbody>
-            <tr><td>Discovery workshop</td><td>$1,200.00</td></tr>
-            <tr><td>Identity system (14 hrs)</td><td>$2,450.00</td></tr>
-            <tr><td>Asset handoff</td><td>$350.00</td></tr>
-          </tbody>
-        </table>
-        <div class="mock-total"><span>Total due</span><b>$4,000.00</b></div>
-        <button class="btn btn-primary mock-pay" id="mockPay" type="button">Pay $4,000.00</button>
-        <div class="toast" id="toast" role="status" aria-live="polite"><i></i><span>Paid by card · funds arrive in 2 days</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats">
-    <div class="wrap stats-grid">
-      <div class="stat"><b>30s</b><span>to send an invoice</span></div>
-      <div class="stat"><b>2×</b><span>faster payment (target)</span></div>
-      <div class="stat"><b>0</b><span>awkward follow-up emails</span></div>
-      <div class="stat"><b>$0</b><span>to get started</span></div>
+<main>
+  <div class="wrap hero">
+    <h1>Facture auto-entrepreneur gratuite, prête en 1 minute</h1>
+    <p class="lede">Remplissez, vérifiez l'aperçu, téléchargez le PDF. Les mentions obligatoires sont ajoutées automatiquement, en franchise de TVA ou avec TVA.</p>
+    <div class="badges">
+      <span class="badge">Sans inscription</span>
+      <span class="badge">Sans filigrane</span>
+      <span class="badge">Données stockées sur votre appareil</span>
+      <span class="badge">Numérotation automatique</span>
     </div>
   </div>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <div class="wrap">
-      <div class="center reveal">
-        <p class="eyebrow">Everything between "done" and "paid"</p>
-        <h2>Built for people who bill by the project</h2>
-        <p class="lede" style="margin-top:16px">No accounting degree required. Halcyon handles the boring part of running a one-person business so you can get back to the part you're good at.</p>
-      </div>
-      <div class="features-grid">
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
-          <h3>Invoices in 30 seconds</h3>
-          <p>Pick a client, add line items or pull them from a saved proposal, hit send. Your branding, your terms, every time.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div>
-          <h3>One-click payment links</h3>
-          <p>Clients pay by card, bank transfer, Apple Pay or Google Pay — no account, no login, no friction.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
-          <h3>Reminders that sound like you</h3>
-          <p>Friendly nudges before and after the due date, written in your voice. You stay the nice one.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
-          <h3>Retainers on autopilot</h3>
-          <p>Recurring invoices and auto-charge for monthly clients. Predictable income without lifting a finger.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
-          <h3>A portal for every client</h3>
-          <p>Proposals, contracts, files and invoice history in one tidy, branded page your clients will actually use.</p>
-        </article>
-        <article class="card reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
-          <h3>Tax-time ready</h3>
-          <p>Income, expenses and outstanding balances, exportable to your accountant in one click. April becomes boring.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW -->
-  <section id="how" style="padding-top:0">
-    <div class="wrap">
-      <div class="reveal">
-        <p class="eyebrow">How it works</p>
-        <h2>Three steps. Then it runs itself.</h2>
-      </div>
-      <div class="steps">
-        <div class="step reveal"><h3>Connect your payout account</h3><p>Link your bank in a couple of minutes. Payments land directly with you — we never hold your money longer than the processor requires.</p></div>
-        <div class="step reveal"><h3>Send your first invoice</h3><p>Import clients from a spreadsheet or add them as you go. Every invoice ships with a secure payment link.</p></div>
-        <div class="step reveal"><h3>Let Halcyon follow up</h3><p>Reminders, receipts, recurring charges and thank-you notes go out automatically. You get a ping when the money arrives.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing">
-    <div class="wrap center">
-      <div class="reveal">
-        <p class="eyebrow">Pricing</p>
-        <h2>Pays for itself with one invoice</h2>
-        <p class="lede" style="margin-top:16px">Start free. Upgrade when you're busy enough to need it. Standard payment processing fees apply on every plan.</p>
-      </div>
-      <div class="billing" role="group" aria-label="Billing period">
-        <button type="button" data-period="monthly" aria-pressed="false">Monthly</button>
-        <button type="button" data-period="annual" aria-pressed="true">Annual <span class="save">−20%</span></button>
-      </div>
-      <div class="plans" id="plans"></div>
-    </div>
-  </section>
-
-  <!-- PLANNER -->
-  <section id="planner">
-    <div class="wrap">
-      <div class="reveal">
-        <p class="eyebrow">For founders &amp; investors</p>
-        <h2>Revenue planner</h2>
-        <p class="lede" style="margin-top:16px">Move the sliders to model monthly recurring revenue over the next 36 months. The dashed line is your ceiling — where new customers exactly replace the ones who churn.</p>
-      </div>
-      <div class="planner card">
-        <div class="controls">
-          <div class="field"><label for="visitors">Monthly visitors <output id="visitorsOut"></output></label><input id="visitors" type="range" min="1000" max="2000000" step="1000" value="50000"></div>
-          <div class="field"><label for="conv">Visitor → paid conversion <output id="convOut"></output></label><input id="conv" type="range" min="0.1" max="10" step="0.1" value="2"></div>
-          <div class="field"><label for="arpu">Avg. revenue per customer / mo <output id="arpuOut"></output></label><input id="arpu" type="range" min="5" max="500" step="1" value="26"></div>
-          <div class="field"><label for="churn">Monthly churn <output id="churnOut"></output></label><input id="churn" type="range" min="0.5" max="15" step="0.1" value="3.5"></div>
-          <div class="field"><label for="growth">Traffic growth / mo <output id="growthOut"></output></label><input id="growth" type="range" min="0" max="20" step="0.5" value="5"></div>
+  <!-- ================================================================
+       TOOL
+       ================================================================ -->
+  <div class="wrap tool" id="outil">
+    <form class="panel form" id="form" novalidate autocomplete="on">
+      <fieldset>
+        <legend><span class="num">1</span>Vous (émetteur)</legend>
+        <div class="field">
+          <span>Nom et prénom, ou nom commercial *</span>
+          <input type="text" data-k="profile.name" id="f-name" autocomplete="name" placeholder="Camille Martin">
         </div>
-        <div class="results">
-          <div class="kpis">
-            <div class="kpi"><small>MRR in 12 mo</small><b id="k12">—</b></div>
-            <div class="kpi"><small>MRR in 36 mo</small><b id="k36">—</b></div>
-            <div class="kpi"><small>ARR in 36 mo</small><b id="karr">—</b></div>
-            <div class="kpi"><small>Customers in 36 mo</small><b id="kcust">—</b></div>
+        <label class="check" style="margin-top:10px"><input type="checkbox" data-k="profile.ei"> <span>Ajouter la mention « EI » (obligatoire pour un entrepreneur individuel / micro-entrepreneur)</span></label>
+        <div class="field">
+          <span>Adresse *</span>
+          <textarea data-k="profile.address" id="f-address" rows="2" autocomplete="street-address" placeholder="12 rue des Lilas&#10;75011 Paris"></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field"><span>SIRET *</span><input type="text" data-k="profile.siret" id="f-siret" inputmode="numeric" placeholder="123 456 789 00012"></div>
+          <div class="field"><span>Email</span><input type="email" data-k="profile.email" autocomplete="email" placeholder="contact@exemple.fr"></div>
+        </div>
+        <div class="field" style="margin-top:14px">
+          <span>TVA</span>
+          <div class="seg" role="radiogroup" aria-label="Régime de TVA">
+            <label><input type="radio" name="vatMode" value="franchise" data-k="profile.vatMode"><span>Franchise (pas de TVA)</span></label>
+            <label><input type="radio" name="vatMode" value="vat" data-k="profile.vatMode"><span>Je facture la TVA</span></label>
           </div>
-          <svg class="chart" id="chart" viewBox="0 0 640 280" role="img" aria-labelledby="chartTitle"><title id="chartTitle">Projected monthly recurring revenue over 36 months</title></svg>
-          <p class="reality" id="reality"></p>
         </div>
+        <div class="field" id="vatNumberField"><span>N° de TVA intracommunautaire *</span><input type="text" data-k="profile.vatNumber" id="f-vatnum" placeholder="FR12 123456789"></div>
+        <details class="more">
+          <summary>Logo, téléphone, RCS / RM</summary>
+          <div class="field">
+            <span>Logo (optionnel, 400 Ko max)</span>
+            <div class="logo-row">
+              <img id="logoThumb" alt="Votre logo" hidden>
+              <input type="file" id="logoInput" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+              <button type="button" class="btn-link btn-danger" id="logoRemove" hidden>Retirer</button>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><span>Téléphone</span><input type="tel" data-k="profile.phone" autocomplete="tel"></div>
+            <div class="field"><span>RCS / RM (si immatriculé)</span><input type="text" data-k="profile.rcs" placeholder="RCS Paris 123 456 789"></div>
+          </div>
+        </details>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">2</span>Votre client</legend>
+        <div class="seg" role="radiogroup" aria-label="Type de client">
+          <label><input type="radio" name="clientType" value="pro" data-k="client.type"><span>Professionnel</span></label>
+          <label><input type="radio" name="clientType" value="part" data-k="client.type"><span>Particulier</span></label>
+        </div>
+        <div class="field"><span>Nom du client *</span><input type="text" data-k="client.name" id="f-cname" placeholder="Studio Exemple SAS"></div>
+        <div class="field"><span>Adresse du client *</span><textarea data-k="client.address" id="f-caddress" rows="2" placeholder="5 avenue de la République&#10;69002 Lyon"></textarea></div>
+        <div class="field" id="sirenField"><span>SIREN du client</span><input type="text" data-k="client.siren" inputmode="numeric" placeholder="987 654 321"><small>Devient obligatoire avec la facturation électronique. Autant l'ajouter dès maintenant.</small></div>
+        <details class="more">
+          <summary>Adresse de livraison différente</summary>
+          <div class="field"><span>Adresse de livraison</span><textarea data-k="client.delivery" rows="2"></textarea></div>
+        </details>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">3</span>Facture</legend>
+        <div class="grid-2">
+          <div class="field"><span>Numéro *</span><input type="text" data-k="inv.number" id="f-number"></div>
+          <div class="field"><span>Date de la facture *</span><input type="date" data-k="inv.date" id="f-date"></div>
+        </div>
+        <div class="grid-2">
+          <div class="field"><span>Date de la prestation / vente</span><input type="date" data-k="inv.serviceDate"><small>Si vide : même date que la facture.</small></div>
+          <div class="field"><span>Paiement</span>
+            <select data-k="inv.terms">
+              <option value="0">À réception</option>
+              <option value="15">À 15 jours</option>
+              <option value="30">À 30 jours</option>
+              <option value="45">À 45 jours</option>
+              <option value="60">À 60 jours</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <span>Nature de l'opération</span>
+          <div class="seg" role="radiogroup" aria-label="Nature de l'opération">
+            <label><input type="radio" name="nature" value="services" data-k="inv.nature"><span>Services</span></label>
+            <label><input type="radio" name="nature" value="biens" data-k="inv.nature"><span>Biens</span></label>
+            <label><input type="radio" name="nature" value="mixte" data-k="inv.nature"><span>Les deux</span></label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">4</span>Prestations</legend>
+        <div class="lines" id="lines"></div>
+        <button type="button" class="btn btn-ghost btn-sm add-line" id="addLine">+ Ajouter une ligne</button>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">5</span>Règlement</legend>
+        <div class="field"><span>Moyen de paiement</span><input type="text" data-k="profile.payment" placeholder="Virement bancaire"></div>
+        <div class="grid-2">
+          <div class="field"><span>IBAN</span><input type="text" data-k="profile.iban" placeholder="FR76 ..."></div>
+          <div class="field"><span>BIC</span><input type="text" data-k="profile.bic"></div>
+        </div>
+        <div class="field"><span>Note (optionnel)</span><textarea data-k="inv.notes" rows="2" placeholder="Merci pour votre confiance !"></textarea></div>
+      </fieldset>
+    </form>
+
+    <div class="side">
+      <div class="errors" id="errors" role="alert" hidden></div>
+      <div class="actions">
+        <button class="btn btn-primary" type="button" data-action="pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Télécharger le PDF
+        </button>
+        <button class="btn btn-ghost" type="button" data-action="save">Enregistrer</button>
+        <button class="btn btn-ghost" type="button" data-action="new">Nouvelle facture</button>
+      </div>
+      <div class="preview-wrap" id="apercu">
+        <div class="sheet" aria-label="Aperçu de la facture"><div class="inv" id="invoice"></div></div>
+        <p class="preview-note">Astuce : dans la fenêtre d'impression, choisissez « Enregistrer au format PDF ». Sur téléphone : Partager → Imprimer, puis écartez l'aperçu avec deux doigts pour obtenir le PDF.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       HISTORY
+       ================================================================ -->
+  <section class="block" id="historique">
+    <div class="wrap">
+      <h2>Mes factures</h2>
+      <p class="intro">Vos factures sont enregistrées dans ce navigateur, sur cet appareil uniquement. Exportez une sauvegarde de temps en temps : vider les données du navigateur efface l'historique.</p>
+      <div class="history" id="history"></div>
+      <div class="backup">
+        <button type="button" class="btn btn-ghost btn-sm" id="exportBtn">Exporter une sauvegarde</button>
+        <label class="btn btn-ghost btn-sm" for="importInput">Importer une sauvegarde</label>
+        <input type="file" id="importInput" accept="application/json,.json" class="sr-only">
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section style="padding-top:0">
+  <!-- ================================================================
+       PARTNERS (affiliation) — masqué tant que CONFIG.partners est vide
+       ================================================================ -->
+  <section class="block" id="partenaires" hidden>
     <div class="wrap">
-      <div class="center reveal"><p class="eyebrow">What early users say</p><h2>Less chasing. More doing.</h2></div>
-      <div class="quotes">
-        <blockquote class="card reveal"><p>"I used to spend Friday afternoons writing 'just following up' emails. Now I don't even know which clients paid late — Halcyon handled it."</p><footer><b>Freelance designer</b>Sample testimonial</footer></blockquote>
-        <blockquote class="card reveal"><p>"Switching my retainers to auto-charge was the single best thing I did for my cash flow this year."</p><footer><b>Independent developer</b>Sample testimonial</footer></blockquote>
-        <blockquote class="card reveal"><p>"My clients told me the payment page was the most professional part of working with me. I'll take it."</p><footer><b>Copywriter &amp; strategist</b>Sample testimonial</footer></blockquote>
-      </div>
-      <p class="note">Placeholder testimonials — replace with real, attributed quotes from your customers before launch.</p>
+      <h2>Les outils qu'on recommande aux indépendants</h2>
+      <p class="intro">Ce site est gratuit. Il est financé par ces recommandations : si vous ouvrez un compte via ces liens, nous touchons une commission, sans surcoût pour vous.</p>
+      <div class="partners" id="partnerList"></div>
+      <p class="disclose">Liens affiliés.</p>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" style="padding-top:0">
+  <!-- ================================================================
+       GUIDE (contenu SEO)
+       ================================================================ -->
+  <section class="block" id="guide">
     <div class="wrap">
-      <div class="center reveal"><p class="eyebrow">FAQ</p><h2>Questions, answered</h2></div>
+      <h2>Facture auto-entrepreneur : les mentions obligatoires</h2>
+      <p class="intro">Une facture incomplète peut être sanctionnée par une amende. Voici ce qu'elle doit contenir. Le générateur ci-dessus intègre toutes ces mentions.</p>
+      <div class="guide">
+        <article>
+          <h3>Ce qui doit figurer sur votre facture</h3>
+          <ul>
+            <li>Le mot « Facture », un <strong>numéro unique</strong> issu d'une séquence chronologique et continue, et la <strong>date d'émission</strong>.</li>
+            <li>La <strong>date de la vente ou de la prestation</strong>.</li>
+            <li>Votre identité : nom et prénom suivis de <strong>« EI »</strong> ou « entrepreneur individuel », adresse, <strong>SIREN ou SIRET</strong>, et numéro RCS / RM si vous êtes immatriculé.</li>
+            <li>Le nom et l'adresse du client.</li>
+            <li>Pour chaque ligne : désignation, quantité, prix unitaire hors taxes et, le cas échéant, taux de TVA.</li>
+            <li>Le total HT, le montant de TVA et le total TTC, ou, en franchise, la mention <strong>« TVA non applicable, art. 293 B du CGI »</strong>.</li>
+            <li>La date ou le délai de paiement.</li>
+            <li>Entre professionnels : le taux des pénalités de retard, l'<strong>indemnité forfaitaire de 40 €</strong> pour frais de recouvrement et les conditions d'escompte.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Facturation électronique : ce qui change en 2026 et 2027</h3>
+          <ul class="timeline">
+            <li><strong>Depuis le 1er septembre 2026 :</strong> toutes les entreprises, micro-entreprises comprises, doivent pouvoir <em>recevoir</em> des factures électroniques.</li>
+            <li><strong>À partir du 1er septembre 2027 :</strong> les micro-entreprises devront <em>émettre</em> leurs factures entre entreprises au format électronique, via une plateforme agréée.</li>
+          </ul>
+          <p>D'ici là, une facture PDF conforme reste valable. Les factures adressées aux <strong>particuliers</strong> ne sont pas concernées par la facture électronique.</p>
+          <p>Avec la réforme, de nouvelles mentions arrivent : le <strong>SIREN du client</strong>, l'<strong>adresse de livraison</strong> si elle est différente, et la <strong>nature de l'opération</strong> (biens, services ou les deux). Le générateur les gère déjà.</p>
+          <p>Ces informations sont générales. Vérifiez votre situation sur <a href="https://www.impots.gouv.fr/facturation-electronique-et-e-reporting" rel="noopener" target="_blank">impots.gouv.fr</a>.</p>
+        </article>
+        <article>
+          <h3>Délais de paiement</h3>
+          <p>Entre professionnels, le délai ne peut pas dépasser <strong>60 jours</strong> après la date de facture, ou 45 jours fin de mois si c'est prévu au contrat. Sans précision, le délai est de <strong>30 jours</strong> après la prestation.</p>
+          <p>Le taux des pénalités de retard ne peut pas être inférieur à <strong>trois fois le taux d'intérêt légal</strong>.</p>
+        </article>
+        <article>
+          <h3>Bien numéroter ses factures</h3>
+          <p>La numérotation doit être <strong>continue et sans trou</strong> : vous ne pouvez pas supprimer une facture déjà émise. Pour l'annuler, on émet une facture d'avoir.</p>
+          <p>Un format simple et efficace : <strong>FA-2026-001</strong>, FA-2026-002… Le générateur propose automatiquement le numéro suivant.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FAQ
+       ================================================================ -->
+  <section class="block" id="faq">
+    <div class="wrap">
+      <h2>Questions fréquentes</h2>
       <div class="faq">
-        <details><summary>Is the free plan really free?</summary><p>Yes. Send up to 5 invoices a month with payment links, forever, with no card required. You only pay standard processing fees when a client pays you.</p></details>
-        <details><summary>How fast do I receive money?</summary><p>Card payments typically arrive in your bank account within 2 business days; bank transfers depend on your region. Halcyon never sits on your funds.</p></details>
-        <details><summary>Do my clients need an account?</summary><p>No. They open a secure link, review the invoice and pay. They can optionally save a payment method for future invoices.</p></details>
-        <details><summary>Can I use my own branding?</summary><p>On Pro and Studio you can add your logo, colors and a custom email domain. Studio also removes Halcyon branding entirely.</p></details>
-        <details><summary>What happens if I cancel?</summary><p>You keep access until the end of your billing period, then drop to the free plan. Export every invoice and client record any time — your data is yours.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section id="signup" style="padding-top:0">
-    <div class="wrap">
-      <div class="final reveal">
-        <h2>Your next invoice could be your last chase.</h2>
-        <p class="lede">Join the early-access list and we'll set you up personally. No spam, unsubscribe anytime.</p>
-        <form class="signup" id="signupForm" novalidate>
-          <label for="email" class="sr-only">Email address</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@studio.com" required>
-          <button class="btn btn-primary" type="submit">Get early access</button>
-        </form>
-        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+        <details><summary>Le générateur de factures est-il vraiment gratuit ?</summary><p>Oui. Vous pouvez créer et télécharger autant de factures que vous voulez, sans inscription et sans filigrane.</p></details>
+        <details><summary>Où sont stockées mes factures ?</summary><p>Uniquement dans votre navigateur, sur votre appareil. Rien n'est envoyé sur un serveur. Pensez à exporter une sauvegarde régulièrement, car vider les données du navigateur efface l'historique.</p></details>
+        <details><summary>Quelle mention mettre quand on ne facture pas la TVA ?</summary><p>En franchise en base de TVA, la facture doit porter la mention « TVA non applicable, art. 293 B du CGI ». Le générateur l'ajoute automatiquement.</p></details>
+        <details><summary>Une facture PDF suffit-elle encore avec la facturation électronique ?</summary><p>Pour les micro-entreprises, l'obligation d'émettre des factures électroniques entre entreprises est prévue au 1er septembre 2027. D'ici là, une facture PDF conforme reste utilisable. Les factures aux particuliers ne relèvent pas de la facture électronique. Vérifiez votre situation sur impots.gouv.fr.</p></details>
+        <details><summary>Comment numéroter ses factures ?</summary><p>Chaque facture doit avoir un numéro unique, issu d'une séquence chronologique et continue, sans trou. Par exemple FA-2026-001, FA-2026-002, etc. Le générateur incrémente le numéro automatiquement.</p></details>
       </div>
     </div>
   </section>
@@ -502,281 +582,470 @@ footer.site { padding: 48px 0 40px; color: var(--ink-3); font-size: .9rem; }
 
 <footer class="site">
   <div class="wrap foot">
-    <span>© <span id="year"></span> <span data-cfg="brand">Halcyon</span>. All rights reserved.</span>
-    <nav aria-label="Footer">
-      <a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
-      <a href="#" data-link="privacy">Privacy</a><a href="#" data-link="terms">Terms</a>
+    <p>© <span id="year"></span> <span data-brand>Facture Minute</span>. Informations fournies à titre indicatif ; elles ne remplacent pas l'avis d'un expert-comptable.</p>
+    <nav aria-label="Liens légaux">
+      <a href="#" id="legalLink">Mentions légales</a>
+      <a href="#" id="privacyLink">Confidentialité</a>
+      <a href="#" id="contactLink">Contact</a>
     </nav>
   </div>
 </footer>
 
+<!-- Mobile action bar -->
+<div class="mbar" id="mbar">
+  <div class="total">Total<b id="mbarTotal">0,00 €</b></div>
+  <a class="btn btn-ghost btn-sm" href="#apercu">Aperçu</a>
+  <button class="btn btn-primary btn-sm" type="button" data-action="pdf">Télécharger le PDF</button>
+</div>
+
+<dialog id="doneDlg" aria-labelledby="doneTitle">
+  <div class="dlg">
+    <div class="ok" aria-hidden="true">✓</div>
+    <h2 id="doneTitle" style="font-size:1.3rem">Facture enregistrée</h2>
+    <p>Elle est dans « Mes factures ». Si le PDF ne s'est pas ouvert, relancez le téléchargement et choisissez « Enregistrer au format PDF ».</p>
+    <div id="dlgPartner"></div>
+    <div class="dlg-actions">
+      <button class="btn btn-ghost" type="button" id="shareBtn">Partager l'outil</button>
+      <button class="btn btn-primary" type="button" id="nextBtn">Facture suivante</button>
+    </div>
+    <button class="btn-link" type="button" id="closeDlg" style="justify-self:center">Fermer</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="printArea"></div>
+
 <script>
-/* ======================================================================
-   CONFIG — the only block you need to edit to launch.
-   ----------------------------------------------------------------------
-   checkout:   paste a Stripe Payment Link (or any checkout URL) per plan
-               and period. Empty string → button scrolls to the signup form.
-   formEndpoint: any service that accepts a POST of form data
-               (Formspree, Basin, your own API). Empty → stored locally
-               in the browser so you can test the flow.
-   ====================================================================== */
+/* =====================================================================
+   CONFIG — à modifier avant la mise en ligne
+   ---------------------------------------------------------------------
+   partners : vos liens affiliés (banque pro, logiciel de facturation
+              électronique, assurance RC Pro, comptabilité…). Tant que
+              la liste est vide, la section et le bloc après
+              téléchargement restent masqués.
+              Exemple d'entrée :
+              { tag: "Compte pro", name: "Nom de la banque",
+                pitch: "Compte pro en ligne pour micro-entrepreneurs…",
+                cta: "Ouvrir un compte", url: "https://lien-affilie…" }
+   ===================================================================== */
 const CONFIG = {
-  brand: "Halcyon",
-  formEndpoint: "",
+  brand: "Facture Minute",
+  numberPrefix: "FA",
+  legalUrl: "#",
   privacyUrl: "#",
-  termsUrl: "#",
-  annualDiscount: 0.20,
-  plans: [
-    {
-      id: "free", name: "Free", desc: "For your first few clients.",
-      monthly: 0,
-      features: ["5 invoices per month", "Card & bank payment links", "Automatic reminders", "Client portal"],
-      cta: "Start free",
-      checkout: { monthly: "", annual: "" }
-    },
-    {
-      id: "pro", name: "Pro", desc: "For full-time independents.", featured: true,
-      monthly: 19,
-      features: ["Unlimited invoices", "Recurring invoices & auto-charge", "Your logo, colors & domain", "Proposals & e-signed contracts", "Tax-ready exports"],
-      cta: "Start 14-day trial",
-      checkout: { monthly: "", annual: "" }
-    },
-    {
-      id: "studio", name: "Studio", desc: "For small teams and agencies.",
-      monthly: 49,
-      features: ["Everything in Pro", "Up to 5 team members", "Remove Halcyon branding", "Multi-currency & multi-entity", "Priority support"],
-      cta: "Start 14-day trial",
-      checkout: { monthly: "", annual: "" }
-    }
-  ]
+  contactUrl: "mailto:contact@votre-domaine.fr",
+  partners: []
 };
 
 (function () {
   "use strict";
-  document.body.classList.remove("no-js");
-
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+
+  /* ---------- Storage (never throws) ---------- */
   const store = {
-    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-    set(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+    get(k, fallback) { try { const v = localStorage.getItem(k); return v == null ? fallback : JSON.parse(v); } catch (e) { return fallback; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
   };
+  const K = { profile: "fm_profile", history: "fm_history", draft: "fm_draft", theme: "fm_theme" };
 
-  /* ---------- Brand & links ---------- */
-  $$('[data-cfg="brand"]').forEach(n => { n.textContent = CONFIG.brand; });
-  $("#year").textContent = new Date().getFullYear();
-  $('[data-link="privacy"]').href = CONFIG.privacyUrl;
-  $('[data-link="terms"]').href = CONFIG.termsUrl;
+  /* ---------- Helpers ---------- */
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const nl2br = s => esc(s).replace(/\n/g, "<br>");
+  const round2 = n => Math.round((n + Number.EPSILON) * 100) / 100;
+  const eur = n => new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(n || 0);
+  const pct = n => new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 }).format(n) + " %";
+  const num = v => { const n = parseFloat(String(v).replace(",", ".").replace(/\s/g, "")); return isFinite(n) ? n : 0; };
+  const todayISO = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+  const parseISO = s => { if (!s) return null; const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const frDate = s => { const d = parseISO(s); return d ? d.toLocaleDateString("fr-FR") : ""; };
+  const addDays = (s, n) => { const d = parseISO(s); if (!d) return ""; d.setDate(d.getDate() + n); return d.toLocaleDateString("fr-FR"); };
+  const clone = o => JSON.parse(JSON.stringify(o));
+  let toastTimer;
+  function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2600); }
 
-  /* ---------- Theme toggle ---------- */
+  /* ---------- State ---------- */
+  const defaultProfile = { name: "", ei: true, address: "", siret: "", email: "", phone: "", rcs: "", vatMode: "franchise", vatNumber: "", logo: "", payment: "Virement bancaire", iban: "", bic: "" };
+  const blankLine = () => ({ desc: "", qty: 1, price: "", vat: 20 });
+
+  function nextNumber() {
+    const year = new Date().getFullYear();
+    const prefix = `${CONFIG.numberPrefix}-${year}-`;
+    const used = store.get(K.history, []).map(h => h.number).filter(n => n.startsWith(prefix)).map(n => parseInt(n.slice(prefix.length), 10)).filter(isFinite);
+    const next = (used.length ? Math.max(...used) : 0) + 1;
+    return prefix + String(next).padStart(3, "0");
+  }
+  function blankInvoice() {
+    return {
+      client: { type: "pro", name: "", address: "", siren: "", delivery: "" },
+      inv: { number: nextNumber(), date: todayISO(), serviceDate: "", terms: "30", nature: "services", notes: "" },
+      lines: [blankLine()]
+    };
+  }
+
+  const state = Object.assign({ profile: Object.assign({}, defaultProfile, store.get(K.profile, {})) }, store.get(K.draft, null) || blankInvoice());
+  if (!Array.isArray(state.lines) || !state.lines.length) state.lines = [blankLine()];
+
+  /* ---------- Generic form binding ---------- */
+  const getPath = p => p.split(".").reduce((o, k) => (o == null ? o : o[k]), state);
+  const setPath = (p, v) => { const ks = p.split("."); const last = ks.pop(); ks.reduce((o, k) => o[k], state)[last] = v; };
+
+  function fillForm() {
+    $$("[data-k]").forEach(el => {
+      const v = getPath(el.dataset.k);
+      if (el.type === "checkbox") el.checked = !!v;
+      else if (el.type === "radio") el.checked = el.value === v;
+      else el.value = v == null ? "" : v;
+    });
+    renderLogoThumb();
+    renderLines();
+  }
+
+  let saveTimer;
+  function persist() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      store.set(K.profile, state.profile);
+      store.set(K.draft, { client: state.client, inv: state.inv, lines: state.lines });
+    }, 300);
+  }
+
+  $("#form").addEventListener("input", e => {
+    const el = e.target;
+    if (el.dataset.k) {
+      const v = el.type === "checkbox" ? el.checked : el.value;
+      if (el.type === "radio" && !el.checked) return;
+      setPath(el.dataset.k, v);
+      if (el.getAttribute("aria-invalid")) el.removeAttribute("aria-invalid");
+      if (el.dataset.k === "profile.vatMode") renderLines();
+    } else if (el.dataset.line != null) {
+      const line = state.lines[+el.dataset.line];
+      line[el.dataset.f] = el.dataset.f === "vat" ? num(el.value) : el.value;
+    }
+    update();
+  });
+  $("#form").addEventListener("change", e => { if (e.target.type === "radio" || e.target.tagName === "SELECT") $("#form").dispatchEvent(new Event("input", { bubbles: true })); });
+  // Radios & selects fire "input" in modern browsers; the change handler above is a fallback that re-runs update().
+  $("#form").addEventListener("submit", e => e.preventDefault());
+
+  /* ---------- Lines ---------- */
+  const VAT_RATES = [20, 10, 5.5, 2.1, 0];
+  function renderLines() {
+    const vat = state.profile.vatMode === "vat";
+    const host = $("#lines");
+    host.innerHTML = "";
+    state.lines.forEach((l, i) => {
+      const row = document.createElement("div");
+      row.className = "line" + (vat ? " has-vat" : "");
+      row.innerHTML = `
+        <label class="desc">Désignation<input type="text" data-line="${i}" data-f="desc" placeholder="Ex. : Création du site vitrine"></label>
+        <label>Qté<input type="text" inputmode="decimal" data-line="${i}" data-f="qty"></label>
+        <label>Prix unit. HT (€)<input type="text" inputmode="decimal" data-line="${i}" data-f="price" placeholder="0,00"></label>
+        ${vat ? `<label class="vat">TVA<select data-line="${i}" data-f="vat">${VAT_RATES.map(r => `<option value="${r}">${pct(r)}</option>`).join("")}</select></label>` : ""}
+        <button type="button" class="del" data-del="${i}" aria-label="Supprimer la ligne ${i + 1}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>`;
+      $('[data-f="desc"]', row).value = l.desc;
+      $('[data-f="qty"]', row).value = l.qty;
+      $('[data-f="price"]', row).value = l.price;
+      if (vat) $('[data-f="vat"]', row).value = String(l.vat);
+      host.appendChild(row);
+    });
+    $("#vatNumberField").hidden = !vat;
+  }
+  $("#addLine").addEventListener("click", () => {
+    const last = state.lines[state.lines.length - 1];
+    state.lines.push(Object.assign(blankLine(), { vat: last ? last.vat : 20 }));
+    renderLines(); update();
+    const inputs = $$('#lines [data-f="desc"]'); inputs[inputs.length - 1].focus();
+  });
+  $("#lines").addEventListener("click", e => {
+    const b = e.target.closest("[data-del]"); if (!b) return;
+    state.lines.splice(+b.dataset.del, 1);
+    if (!state.lines.length) state.lines.push(blankLine());
+    renderLines(); update();
+  });
+
+  /* ---------- Logo ---------- */
+  function renderLogoThumb() {
+    const img = $("#logoThumb");
+    img.hidden = !state.profile.logo; $("#logoRemove").hidden = !state.profile.logo;
+    if (state.profile.logo) img.src = state.profile.logo;
+  }
+  $("#logoInput").addEventListener("change", e => {
+    const f = e.target.files[0]; if (!f) return;
+    if (f.size > 400 * 1024) { toast("Logo trop lourd (400 Ko max)."); e.target.value = ""; return; }
+    const r = new FileReader();
+    r.onload = () => { state.profile.logo = r.result; renderLogoThumb(); update(); if (!store.set(K.profile, state.profile)) toast("Logo affiché mais non mémorisé (stockage plein)."); };
+    r.readAsDataURL(f);
+  });
+  $("#logoRemove").addEventListener("click", () => { state.profile.logo = ""; $("#logoInput").value = ""; renderLogoThumb(); update(); });
+
+  /* ---------- Totals ---------- */
+  function totals(s = state) {
+    const vat = s.profile.vatMode === "vat";
+    let ht = 0; const byRate = {};
+    const rows = s.lines.map(l => {
+      const amount = round2(num(l.qty) * num(l.price));
+      ht += amount;
+      if (vat) byRate[l.vat] = (byRate[l.vat] || 0) + amount;
+      return Object.assign({}, l, { amount });
+    });
+    ht = round2(ht);
+    const taxes = vat ? Object.keys(byRate).map(Number).sort((a, b) => b - a).filter(r => r > 0).map(r => ({ rate: r, base: round2(byRate[r]), tax: round2(byRate[r] * r / 100) })) : [];
+    const tva = round2(taxes.reduce((a, t) => a + t.tax, 0));
+    return { vat, rows, ht, taxes, tva, ttc: round2(ht + tva) };
+  }
+
+  /* ---------- Invoice rendering ---------- */
+  const NATURE = { services: "Prestation de services", biens: "Livraison de biens", mixte: "Livraison de biens et prestation de services" };
+  function invoiceHTML(s = state) {
+    const p = s.profile, c = s.client, i = s.inv, t = totals(s);
+    const pro = c.type === "pro";
+    const name = p.name ? esc(p.name) + (p.ei ? " EI" : "") : '<span class="inv-empty">Votre nom</span>';
+    const terms = +i.terms;
+    const due = terms === 0 ? "À réception" : addDays(i.date, terms);
+    const filled = t.rows.filter(r => r.desc || num(r.price));
+    const rowsHTML = (filled.length ? filled : [{ desc: "", qty: "", price: "", amount: 0, vat: 0, empty: true }]).map(r => r.empty
+      ? `<tr><td class="d inv-empty" colspan="${t.vat ? 5 : 4}">Vos prestations apparaîtront ici</td></tr>`
+      : `<tr><td class="d">${esc(r.desc)}</td><td class="r">${esc(String(r.qty).replace(".", ","))}</td><td class="r">${eur(num(r.price))}</td>${t.vat ? `<td class="r">${pct(r.vat)}</td>` : ""}<td class="r">${eur(r.amount)}</td></tr>`
+    ).join("");
+
+    const legal = [];
+    if (!t.vat) legal.push("TVA non applicable, art. 293 B du CGI.");
+    if (pro) {
+      legal.push("En cas de retard de paiement, des pénalités calculées à trois fois le taux d'intérêt légal seront exigibles, ainsi qu'une indemnité forfaitaire pour frais de recouvrement de 40 € (art. L441-10 du Code de commerce). Pas d'escompte pour paiement anticipé.");
+    }
+    const ids = [p.siret && "SIRET " + esc(p.siret), p.rcs && esc(p.rcs), t.vat && p.vatNumber && "TVA " + esc(p.vatNumber)].filter(Boolean).join(" · ");
+
+    return `
+      <div class="inv-top">
+        <div class="inv-from">
+          ${p.logo ? `<img class="inv-logo" src="${esc(p.logo)}" alt="">` : ""}
+          <b>${name}</b>
+          ${p.address ? nl2br(p.address) + "<br>" : ""}
+          ${p.email ? esc(p.email) + "<br>" : ""}${p.phone ? esc(p.phone) + "<br>" : ""}
+          ${ids}
+        </div>
+        <div class="inv-title">
+          <h2>FACTURE</h2>
+          <dl>
+            <dt>N°</dt><dd>${esc(i.number) || "—"}</dd>
+            <dt>Date</dt><dd>${frDate(i.date) || "—"}</dd>
+            <dt>${i.nature === "biens" ? "Date de vente" : "Date de prestation"}</dt><dd>${frDate(i.serviceDate || i.date) || "—"}</dd>
+            <dt>Échéance</dt><dd>${due || "—"}</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="inv-to"><div>
+        <small>Facturé à</small>
+        <b>${c.name ? esc(c.name) : '<span class="inv-empty">Nom du client</span>'}</b>
+        ${c.address ? nl2br(c.address) : ""}
+        ${pro && c.siren ? `<br>SIREN ${esc(c.siren)}` : ""}
+        ${c.delivery ? `<br><br><small>Livraison</small>${nl2br(c.delivery)}` : ""}
+      </div></div>
+      <table>
+        <thead><tr><th>Désignation</th><th class="r">Qté</th><th class="r">P.U. HT</th>${t.vat ? '<th class="r">TVA</th>' : ""}<th class="r">Total HT</th></tr></thead>
+        <tbody>${rowsHTML}</tbody>
+      </table>
+      <div class="inv-totals">
+        ${t.vat ? `<div><span>Total HT</span><span>${eur(t.ht)}</span></div>
+          ${t.taxes.map(x => `<div><span>TVA ${pct(x.rate)}</span><span>${eur(x.tax)}</span></div>`).join("")}
+          <div class="grand"><span>Total TTC</span><span>${eur(t.ttc)}</span></div>`
+        : `<div class="grand"><span>Net à payer</span><span>${eur(t.ht)}</span></div>`}
+      </div>
+      ${!t.vat ? `<p class="inv-vatnote">TVA non applicable, art. 293 B du CGI</p>` : ""}
+      <div class="inv-pay">
+        <div><b>Opération :</b> ${NATURE[i.nature] || NATURE.services}</div>
+        <div><b>Règlement :</b> ${esc(p.payment || "Virement bancaire")}${terms === 0 ? ", à réception de la facture" : `, au plus tard le ${due}`}</div>
+        ${p.iban ? `<div><b>IBAN :</b> ${esc(p.iban)}${p.bic ? ` · <b>BIC :</b> ${esc(p.bic)}` : ""}</div>` : ""}
+      </div>
+      ${i.notes ? `<div class="inv-notes">${esc(i.notes)}</div>` : ""}
+      <div class="inv-legal">${legal.map(l => `<div>${l}</div>`).join("")}</div>`;
+  }
+
+  function update() {
+    $("#invoice").innerHTML = invoiceHTML();
+    const t = totals();
+    $("#mbarTotal").textContent = eur(t.vat ? t.ttc : t.ht);
+    $("#sirenField").hidden = state.client.type !== "pro";
+    if (!$("#errors").hidden) validate(true); // live-refresh the list of missing fields
+    persist();
+  }
+
+  /* ---------- Validation ---------- */
+  function validate(silent) {
+    const p = state.profile, c = state.client, i = state.inv;
+    const problems = [];
+    const need = (ok, sel, label) => { if (!ok) { problems.push({ sel, label }); const el = sel && $(sel); if (el && !silent) el.setAttribute("aria-invalid", "true"); } };
+    need(p.name.trim(), "#f-name", "Votre nom");
+    need(p.address.trim(), "#f-address", "Votre adresse");
+    need(p.siret.replace(/\s/g, "").length >= 9, "#f-siret", "Votre SIRET");
+    if (p.vatMode === "vat") need(p.vatNumber.trim(), "#f-vatnum", "Votre n° de TVA intracommunautaire");
+    need(c.name.trim(), "#f-cname", "Le nom du client");
+    need(c.address.trim(), "#f-caddress", "L'adresse du client");
+    need(i.number.trim(), "#f-number", "Le numéro de facture");
+    need(i.date, "#f-date", "La date de la facture");
+    const hasLine = state.lines.some(l => l.desc.trim() && num(l.price) !== 0);
+    need(hasLine, '#lines [data-f="desc"]', "Au moins une prestation avec un prix");
+    const box = $("#errors");
+    if (problems.length) {
+      box.innerHTML = "<b>Il manque quelques informations obligatoires :</b><ul>" + problems.map(x => `<li>${esc(x.label)}</li>`).join("") + "</ul>";
+      box.hidden = false;
+      if (silent) return false;
+      const first = problems[0].sel && $(problems[0].sel);
+      if (first) { first.scrollIntoView({ block: "center", behavior: "smooth" }); setTimeout(() => first.focus({ preventScroll: true }), 300); }
+      return false;
+    }
+    box.hidden = true;
+    return true;
+  }
+
+  /* ---------- History ---------- */
+  function saveToHistory() {
+    const t = totals();
+    const entry = {
+      number: state.inv.number.trim(), date: state.inv.date, client: state.client.name.trim(),
+      total: t.vat ? t.ttc : t.ht, savedAt: Date.now(),
+      data: clone({ profile: Object.assign({}, state.profile, { logo: "" }), client: state.client, inv: state.inv, lines: state.lines })
+    };
+    const h = store.get(K.history, []);
+    const idx = h.findIndex(x => x.number === entry.number);
+    if (idx >= 0) h[idx] = entry; else h.unshift(entry);
+    const ok = store.set(K.history, h);
+    renderHistory();
+    return ok;
+  }
+  function renderHistory() {
+    const h = store.get(K.history, []);
+    const host = $("#history");
+    if (!h.length) { host.innerHTML = '<div class="empty">Aucune facture enregistrée pour l\'instant.</div>'; return; }
+    host.innerHTML = h.map((x, k) => `
+      <div class="hrow">
+        <div class="meta"><b>${esc(x.number)}</b><span>${esc(x.client || "Sans client")} · ${frDate(x.date)}</span></div>
+        <div class="amt">${eur(x.total)}</div>
+        <div class="ops">
+          <button class="btn-link" type="button" data-h="open" data-i="${k}">Ouvrir</button>
+          <button class="btn-link" type="button" data-h="dup" data-i="${k}">Dupliquer</button>
+          <button class="btn-link btn-danger" type="button" data-h="del" data-i="${k}">Supprimer</button>
+        </div>
+      </div>`).join("");
+  }
+  function loadInvoice(data, asNew) {
+    const logo = state.profile.logo;
+    state.profile = Object.assign({}, defaultProfile, state.profile, data.profile, { logo });
+    state.client = clone(data.client);
+    state.inv = clone(data.inv);
+    state.lines = clone(data.lines);
+    if (asNew) { state.inv.number = nextNumber(); state.inv.date = todayISO(); state.inv.serviceDate = ""; }
+    fillForm(); update();
+    $("#outil").scrollIntoView({ behavior: "smooth" });
+  }
+  $("#history").addEventListener("click", e => {
+    const b = e.target.closest("[data-h]"); if (!b) return;
+    const h = store.get(K.history, []); const x = h[+b.dataset.i]; if (!x) return;
+    if (b.dataset.h === "open") { loadInvoice(x.data, false); toast(`Facture ${x.number} ouverte`); }
+    if (b.dataset.h === "dup") { loadInvoice(x.data, true); toast("Copie créée avec un nouveau numéro"); }
+    if (b.dataset.h === "del") {
+      if (!confirm(`Supprimer ${x.number} de cet appareil ?\n\nAttention : une facture déjà envoyée au client ne doit pas être supprimée de votre comptabilité. Pour l'annuler, émettez une facture d'avoir.`)) return;
+      h.splice(+b.dataset.i, 1); store.set(K.history, h); renderHistory();
+    }
+  });
+
+  /* Backup */
+  $("#exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify({ app: "facture-minute", version: 1, exportedAt: new Date().toISOString(), profile: state.profile, history: store.get(K.history, []) }, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = `factures-sauvegarde-${todayISO()}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  $("#importInput").addEventListener("change", e => {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const d = JSON.parse(r.result);
+        if (!d || !Array.isArray(d.history)) throw new Error("format");
+        const current = store.get(K.history, []);
+        const seen = new Set(current.map(x => x.number));
+        const merged = current.concat(d.history.filter(x => x && x.number && !seen.has(x.number)));
+        store.set(K.history, merged);
+        if (d.profile && !state.profile.name) { state.profile = Object.assign({}, defaultProfile, d.profile); store.set(K.profile, state.profile); fillForm(); update(); }
+        renderHistory(); toast(`${merged.length - current.length} facture(s) importée(s)`);
+      } catch (err) { toast("Fichier de sauvegarde invalide."); }
+      e.target.value = "";
+    };
+    r.readAsText(f);
+  });
+
+  /* ---------- Actions ---------- */
+  function newInvoice() {
+    Object.assign(state, blankInvoice());
+    fillForm(); update(); $("#errors").hidden = true;
+    $("#outil").scrollIntoView({ behavior: "smooth" });
+  }
+  function doPDF() {
+    if (!validate()) return;
+    const saved = saveToHistory();
+    $("#printArea").innerHTML = `<div class="sheet"><div class="inv">${invoiceHTML()}</div></div>`;
+    const prevTitle = document.title;
+    document.title = `Facture ${state.inv.number} - ${state.client.name}`.replace(/[\\/:*?"<>|]/g, "-");
+    window.print();
+    // Most browsers block during print(); afterprint covers the rest.
+    setTimeout(() => { document.title = prevTitle; openDone(saved); }, 300);
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-action]"); if (!b) return;
+    const a = b.dataset.action;
+    if (a === "pdf") doPDF();
+    if (a === "save") { if (validate()) toast(saveToHistory() ? "Facture enregistrée" : "Stockage indisponible sur ce navigateur"); }
+    if (a === "new") newInvoice();
+  });
+
+  /* ---------- Done dialog + partners ---------- */
+  const dlg = $("#doneDlg");
+  function partnerCard(p) {
+    return `<div class="partner"><span class="tag">${esc(p.tag || "Recommandé")}</span><h3>${esc(p.name)}</h3><p>${esc(p.pitch)}</p>
+      <a class="btn btn-primary btn-sm" href="${esc(p.url)}" target="_blank" rel="sponsored noopener">${esc(p.cta || "Découvrir")}</a></div>`;
+  }
+  let shownIdx = 0;
+  function openDone(saved) {
+    const ps = CONFIG.partners;
+    $("#dlgPartner").innerHTML = ps.length ? partnerCard(ps[shownIdx++ % ps.length]) + '<p class="disclose">Lien affilié : il finance ce site gratuit.</p>' : "";
+    if (!saved) $("#dlgPartner").insertAdjacentHTML("afterbegin", '<p class="errors">Votre navigateur bloque le stockage : la facture n\'a pas pu être gardée dans l\'historique.</p>');
+    if (typeof dlg.showModal === "function") { if (!dlg.open) dlg.showModal(); } else toast("Facture enregistrée");
+  }
+  $("#closeDlg").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  $("#nextBtn").addEventListener("click", () => { dlg.close(); newInvoice(); });
+  $("#shareBtn").addEventListener("click", async () => {
+    const data = { title: CONFIG.brand, text: "Générateur de factures gratuit pour auto-entrepreneurs, sans inscription :", url: location.href.split("#")[0] };
+    try {
+      if (navigator.share) await navigator.share(data);
+      else { await navigator.clipboard.writeText(data.url); toast("Lien copié !"); }
+    } catch (e) { /* user cancelled */ }
+  });
+
+  function renderPartners() {
+    const ps = CONFIG.partners;
+    $("#partenaires").hidden = !ps.length;
+    $("#partnerList").innerHTML = ps.map(partnerCard).join("");
+  }
+
+  /* ---------- Theme ---------- */
   const root = document.documentElement;
-  const savedTheme = store.get("theme");
+  const savedTheme = store.get(K.theme, null);
   if (savedTheme === "light" || savedTheme === "dark") root.dataset.theme = savedTheme;
   $("#themeBtn").addEventListener("click", () => {
-    const current = root.dataset.theme ||
-      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const next = current === "dark" ? "light" : "dark";
-    root.dataset.theme = next;
-    store.set("theme", next);
-    drawPlanner();
+    const cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    root.dataset.theme = cur === "dark" ? "light" : "dark";
+    store.set(K.theme, root.dataset.theme);
   });
 
-  /* ---------- Sticky header border ---------- */
-  const header = $("header.site");
-  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
-  addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  /* ---------- Hero mock interaction ---------- */
-  const payBtn = $("#mockPay"), toast = $("#toast"), status = $("#mockStatus");
-  payBtn.addEventListener("click", () => {
-    status.textContent = "Paid"; status.classList.add("paid");
-    payBtn.textContent = "Payment received ✓"; payBtn.disabled = true;
-    toast.classList.add("show");
-    setTimeout(() => {
-      toast.classList.remove("show");
-      status.textContent = "Awaiting payment"; status.classList.remove("paid");
-      payBtn.textContent = "Pay $4,000.00"; payBtn.disabled = false;
-    }, 4000);
-  });
-
-  /* ---------- Pricing ---------- */
-  const money = (n, d = 0) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
-  let period = store.get("period") === "monthly" ? "monthly" : "annual";
-
-  function renderPlans() {
-    const host = $("#plans");
-    host.innerHTML = "";
-    CONFIG.plans.forEach(p => {
-      const perMonth = period === "annual" ? p.monthly * (1 - CONFIG.annualDiscount) : p.monthly;
-      const hasCents = Math.round(perMonth * 100) % 100 !== 0;
-      const note = p.monthly === 0 ? "Free forever"
-        : period === "annual" ? money(perMonth * 12, hasCents ? 2 : 0) + " billed yearly" : "Billed monthly";
-      const url = (p.checkout && p.checkout[period]) || "";
-      const el = document.createElement("article");
-      el.className = "plan" + (p.featured ? " featured" : "");
-      el.innerHTML = `
-        <h3></h3><p class="desc"></p>
-        <div class="price"><b></b><span>/ month</span></div>
-        <p class="price-note"></p>
-        <ul></ul>
-        <a class="btn ${p.featured ? "btn-primary" : "btn-ghost"}"></a>`;
-      $("h3", el).textContent = p.name;
-      $(".desc", el).textContent = p.desc;
-      $(".price b", el).textContent = money(perMonth, hasCents ? 2 : 0);
-      $(".price-note", el).textContent = note;
-      const ul = $("ul", el);
-      p.features.forEach(f => { const li = document.createElement("li"); li.textContent = f; ul.appendChild(li); });
-      const a = $("a", el);
-      a.textContent = p.cta;
-      if (url) { a.href = url; a.rel = "noopener"; }
-      else { a.href = "#signup"; a.dataset.plan = p.id; }
-      host.appendChild(el);
-    });
-    $$(".billing button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.period === period)));
-  }
-  $$(".billing button").forEach(b => b.addEventListener("click", () => {
-    period = b.dataset.period; store.set("period", period); renderPlans();
-  }));
-  $("#plans").addEventListener("click", e => {
-    const a = e.target.closest("a[data-plan]");
-    if (a) setTimeout(() => $("#email").focus({ preventScroll: true }), 400);
-  });
-  renderPlans();
-
-  /* ---------- Revenue planner ---------- */
-  const inputs = ["visitors", "conv", "arpu", "churn", "growth"].reduce((o, id) => (o[id] = $("#" + id), o), {});
-  const fmt = {
-    visitors: v => Number(v).toLocaleString("en-US"),
-    conv: v => Number(v).toFixed(1) + "%",
-    arpu: v => "$" + v,
-    churn: v => Number(v).toFixed(1) + "%",
-    growth: v => Number(v).toFixed(1) + "%"
-  };
-  function compact(n) {
-    const abs = Math.abs(n);
-    const units = [[1e12, "T"], [1e9, "B"], [1e6, "M"], [1e3, "K"]];
-    for (const [v, s] of units) if (abs >= v) return "$" + (n / v).toFixed(n / v >= 100 ? 0 : 1) + s;
-    return "$" + Math.round(n).toLocaleString("en-US");
-  }
-  function compactNum(n) {
-    return compact(n).replace("$", "");
-  }
-
-  function simulate() {
-    const visitors0 = +inputs.visitors.value, conv = +inputs.conv.value / 100,
-          arpu = +inputs.arpu.value, churn = +inputs.churn.value / 100, g = +inputs.growth.value / 100;
-    const series = []; let customers = 0;
-    for (let m = 1; m <= 36; m++) {
-      const visitors = visitors0 * Math.pow(1 + g, m - 1);
-      customers = customers * (1 - churn) + visitors * conv;
-      series.push({ m, customers, mrr: customers * arpu });
-    }
-    const lastNew = visitors0 * Math.pow(1 + g, 35) * conv;
-    const ceiling = (lastNew / churn) * arpu; // steady-state MRR at month-36 traffic
-    return { series, arpu, churn, ceiling };
-  }
-
-  const NS = "http://www.w3.org/2000/svg";
-  function svg(tag, attrs, parent) {
-    const n = document.createElementNS(NS, tag);
-    for (const k in attrs) n.setAttribute(k, attrs[k]);
-    if (parent) parent.appendChild(n);
-    return n;
-  }
-
-  function drawPlanner() {
-    Object.keys(inputs).forEach(k => { $("#" + k + "Out").textContent = fmt[k](inputs[k].value); });
-    const { series, arpu, ceiling } = simulate();
-    const at = m => series[m - 1];
-    $("#k12").textContent = compact(at(12).mrr);
-    $("#k36").textContent = compact(at(36).mrr);
-    $("#karr").textContent = compact(at(36).mrr * 12);
-    $("#kcust").textContent = compactNum(at(36).customers);
-
-    // Chart
-    const chart = $("#chart");
-    $$("g, path, line, text:not(title)", chart).forEach(n => n.remove());
-    const W = 640, H = 280, L = 56, R = 14, T = 14, B = 30;
-    const maxY = Math.max(at(36).mrr, ceiling) * 1.08 || 1;
-    const x = m => L + ((m - 1) / 35) * (W - L - R);
-    const y = v => T + (1 - v / maxY) * (H - T - B);
-    const grid = svg("g", { class: "grid" }, chart);
-    for (let i = 0; i <= 4; i++) {
-      const v = (maxY / 4) * i, yy = y(v);
-      svg("line", { x1: L, x2: W - R, y1: yy, y2: yy }, grid);
-      const t = svg("text", { x: L - 8, y: yy + 4, "text-anchor": "end" }, grid); t.textContent = compact(v);
-    }
-    [1, 6, 12, 18, 24, 30, 36].forEach(m => {
-      const t = svg("text", { x: x(m), y: H - 8, "text-anchor": "middle" }, grid); t.textContent = "M" + m;
-    });
-    const pts = series.map(s => `${x(s.m).toFixed(1)},${y(s.mrr).toFixed(1)}`);
-    svg("path", { class: "area", d: `M${x(1)},${y(0)} L${pts.join(" L")} L${x(36)},${y(0)} Z` }, chart);
-    svg("path", { class: "line", d: "M" + pts.join(" L") }, chart);
-    if (ceiling < maxY) svg("line", { class: "ceil", x1: L, x2: W - R, y1: y(ceiling), y2: y(ceiling) }, chart);
-
-    // Reality check against a $1T / month target
-    const TARGET = 1e12, WORLD_POP = 8.2e9;
-    const needed = TARGET / arpu;
-    const ratio = needed / WORLD_POP;
-    const pct = (at(36).mrr / TARGET) * 100;
-    const pctText = pct < 0.0001 ? "less than 0.0001%" : pct.toPrecision(2) + "%";
-    $("#reality").innerHTML =
-      `<strong>Reality check:</strong> at ${fmt.arpu(arpu)}/month, reaching <strong>$1 trillion in monthly revenue</strong> would take ` +
-      `<strong>${compactNum(needed)} paying customers</strong> — ` +
-      (ratio >= 1
-        ? `about <strong>${ratio.toFixed(ratio >= 10 ? 0 : 1)}× everyone alive on Earth</strong>. `
-        : `<strong>${(ratio * 100).toFixed(0)}% of every human on Earth</strong>. `) +
-      `That's roughly 11% of the entire world economy, every month. This model gets you to ${pctText} of it in three years — ` +
-      `which, at ${compact(at(36).mrr * 12)} a year, is a very real business.`;
-  }
-  Object.values(inputs).forEach(i => i.addEventListener("input", drawPlanner));
-  drawPlanner();
-
-  /* ---------- Signup form ---------- */
-  const form = $("#signupForm"), msg = $("#formMsg"), email = $("#email");
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-    const value = email.value.trim();
-    msg.className = "form-msg";
-    if (!EMAIL_RE.test(value)) {
-      msg.textContent = "Please enter a valid email address.";
-      msg.classList.add("err"); email.setAttribute("aria-invalid", "true"); email.focus();
-      return;
-    }
-    email.removeAttribute("aria-invalid");
-    const btn = $("button", form); btn.disabled = true; btn.textContent = "Joining…";
-    try {
-      if (CONFIG.formEndpoint) {
-        const body = new FormData(); body.append("email", value); body.append("source", location.href);
-        const res = await fetch(CONFIG.formEndpoint, { method: "POST", body, headers: { Accept: "application/json" } });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-      } else {
-        let list = [];
-        try { list = JSON.parse(store.get("waitlist") || "[]"); } catch (_) {}
-        if (!list.includes(value)) list.push(value);
-        store.set("waitlist", JSON.stringify(list));
-      }
-      msg.textContent = "You're on the list. We'll be in touch within one business day.";
-      msg.classList.add("ok"); form.reset();
-    } catch (err) {
-      msg.textContent = "Something went wrong — please try again in a moment.";
-      msg.classList.add("err");
-    } finally {
-      btn.disabled = false; btn.textContent = "Get early access";
-    }
-  });
-
-  /* ---------- Reveal on scroll ---------- */
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(entries => entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-    }), { rootMargin: "0px 0px -8% 0px" });
-    $$(".reveal").forEach(n => io.observe(n));
-  } else {
-    $$(".reveal").forEach(n => n.classList.add("in"));
-  }
+  /* ---------- Init ---------- */
+  $$("[data-brand]").forEach(n => n.textContent = CONFIG.brand);
+  $("#year").textContent = new Date().getFullYear();
+  $("#legalLink").href = CONFIG.legalUrl; $("#privacyLink").href = CONFIG.privacyUrl; $("#contactLink").href = CONFIG.contactUrl;
+  fillForm(); update(); renderHistory(); renderPartners();
 })();
 </script>
 </body>
