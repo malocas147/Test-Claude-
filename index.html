@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halcyon — Get paid faster</title>
+<meta name="description" content="Halcyon is invoicing, payments and client portals for independent professionals. Send an invoice in 30 seconds and get paid in days, not months.">
+<meta property="og:title" content="Halcyon — Get paid faster">
+<meta property="og:description" content="Invoicing, payments and client portals for independent professionals.">
+<meta name="theme-color" content="#0d0f12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8b04a'/%3E%3Cpath d='M9 22V10h3v4.8h8V10h3v12h-3v-4.6h-8V22z' fill='%230d0f12'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ====================================================================
+   Design tokens
+   ==================================================================== */
+:root {
+  --bg: #f7f5f0;
+  --bg-2: #efebe2;
+  --surface: #ffffff;
+  --ink: #16181c;
+  --ink-2: #4a4f57;
+  --ink-3: #7a7f88;
+  --line: #e2ddd2;
+  --accent: #b9791a;
+  --accent-ink: #ffffff;
+  --accent-soft: #f6e7cc;
+  --good: #2f7d4f;
+  --warn: #b0452f;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(20,20,20,.04), 0 8px 24px rgba(20,20,20,.06);
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0f12; --bg-2: #14171c; --surface: #181b21; --ink: #f1efe9;
+    --ink-2: #b9bcc3; --ink-3: #868a93; --line: #262a32; --accent: #e8b04a;
+    --accent-ink: #0d0f12; --accent-soft: #2a2216; --good: #5fc28a; --warn: #f08a72;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0f12; --bg-2: #14171c; --surface: #181b21; --ink: #f1efe9;
+  --ink-2: #b9bcc3; --ink-3: #868a93; --line: #262a32; --accent: #e8b04a;
+  --accent-ink: #0d0f12; --accent-soft: #2a2216; --good: #5fc28a; --warn: #f08a72;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+/* ====================================================================
+   Base
+   ==================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; margin: 0; }
+h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h3 { font-size: 1.2rem; font-family: var(--sans); font-weight: 600; letter-spacing: 0; }
+p { margin: 0; }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 720px) { .wrap { padding: 0 28px; } }
+section { padding: 88px 0; }
+.eyebrow { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.lede { color: var(--ink-2); font-size: 1.125rem; max-width: 60ch; }
+.center { text-align: center; }
+.center .lede { margin-left: auto; margin-right: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; left: -9999px; top: 8px; background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 8px; z-index: 100; }
+.skip:focus { left: 8px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 46px; padding: 0 22px; border-radius: 999px; border: 1px solid transparent;
+  font: 600 .95rem var(--sans); text-decoration: none; cursor: pointer;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { filter: brightness(1.06); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--ink-3); }
+
+/* ====================================================================
+   Header
+   ==================================================================== */
+header.site {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid transparent; transition: border-color .2s;
+}
+header.site.scrolled { border-bottom-color: var(--line); }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; font: 700 1.2rem var(--serif); text-decoration: none; }
+.logo-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--accent); display: grid; place-items: center; }
+.logo-mark svg { width: 18px; height: 18px; }
+.nav-links { display: none; gap: 28px; font-size: .95rem; color: var(--ink-2); }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.icon-btn { width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.icon-btn svg { width: 18px; height: 18px; }
+.nav .btn { min-height: 40px; padding: 0 16px; }
+@media (min-width: 860px) { .nav-links { display: flex; } }
+@media (max-width: 420px) { .nav .btn-ghost { display: none; } }
+
+/* ====================================================================
+   Hero
+   ==================================================================== */
+.hero { padding: 72px 0 64px; position: relative; }
+.hero-grid { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 960px) { .hero-grid { grid-template-columns: 1.05fr .95fr; } }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .lede { margin-top: 20px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.trust { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 22px; font-size: .88rem; color: var(--ink-3); }
+.trust span::before { content: "✓"; color: var(--good); margin-right: 6px; font-weight: 700; }
+
+/* Invoice mock */
+.mock {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
+  padding: 24px; position: relative; max-width: 480px; justify-self: center; width: 100%;
+}
+.mock-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.mock-head small { color: var(--ink-3); display: block; font-size: .78rem; }
+.mock-head strong { font-size: 1.05rem; }
+.pill { font-size: .75rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.pill.paid { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+.mock table { width: 100%; border-collapse: collapse; margin: 20px 0 14px; font-size: .9rem; }
+.mock td { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.mock td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.mock-total { display: flex; justify-content: space-between; align-items: baseline; font-weight: 600; }
+.mock-total b { font: 700 1.8rem var(--serif); font-variant-numeric: tabular-nums; }
+.mock-pay { margin-top: 18px; width: 100%; }
+.toast {
+  position: absolute; right: -8px; bottom: -22px; background: var(--ink); color: var(--bg);
+  padding: 12px 16px; border-radius: 12px; font-size: .85rem; box-shadow: var(--shadow);
+  display: flex; gap: 10px; align-items: center; opacity: 0; transform: translateY(8px);
+  transition: opacity .4s, transform .4s;
+}
+.toast.show { opacity: 1; transform: none; }
+.toast i { width: 8px; height: 8px; border-radius: 50%; background: var(--good); display: inline-block; }
+@media (max-width: 520px) { .toast { right: 8px; } }
+
+/* ====================================================================
+   Logos / stats
+   ==================================================================== */
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 36px 0; background: var(--bg-2); }
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: center; }
+@media (min-width: 720px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat b { display: block; font: 700 2rem var(--serif); font-variant-numeric: tabular-nums; }
+.stat span { color: var(--ink-3); font-size: .9rem; }
+
+/* ====================================================================
+   Features
+   ==================================================================== */
+.features-grid { display: grid; gap: 18px; margin-top: 48px; }
+@media (min-width: 720px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+.card .ico { width: 42px; height: 42px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 18px; }
+.card .ico svg { width: 22px; height: 22px; }
+.card p { color: var(--ink-2); margin-top: 8px; font-size: .96rem; }
+
+/* Steps */
+.steps { display: grid; gap: 28px; margin-top: 48px; counter-reset: step; }
+@media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.step { counter-increment: step; padding-top: 22px; border-top: 2px solid var(--ink); }
+.step::before { content: "0" counter(step); font: 700 .85rem var(--sans); color: var(--accent); letter-spacing: .1em; display: block; margin-bottom: 10px; }
+.step p { color: var(--ink-2); margin-top: 8px; }
+
+/* ====================================================================
+   Pricing
+   ==================================================================== */
+#pricing { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.billing { display: inline-flex; margin-top: 28px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.billing button { border: 0; background: transparent; color: var(--ink-2); font: 600 .9rem var(--sans); padding: 8px 18px; border-radius: 999px; cursor: pointer; min-height: 38px; }
+.billing button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.billing .save { color: var(--good); font-size: .78rem; margin-left: 4px; }
+.billing button[aria-pressed="true"] .save { color: inherit; opacity: .8; }
+.plans { display: grid; gap: 18px; margin-top: 40px; text-align: left; }
+@media (min-width: 900px) { .plans { grid-template-columns: repeat(3, 1fr); align-items: stretch; } }
+.plan { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; }
+.plan.featured { border: 2px solid var(--accent); position: relative; box-shadow: var(--shadow); }
+.plan.featured::before { content: "Most popular"; position: absolute; top: -13px; left: 28px; background: var(--accent); color: var(--accent-ink); font-size: .75rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; }
+.plan h3 { font-size: 1.05rem; }
+.plan .desc { color: var(--ink-3); font-size: .92rem; margin-top: 4px; min-height: 2.9em; }
+.price { margin: 20px 0 6px; display: flex; align-items: baseline; gap: 6px; }
+.price b { font: 700 2.8rem var(--serif); font-variant-numeric: tabular-nums; }
+.price span { color: var(--ink-3); font-size: .9rem; }
+.price-note { color: var(--ink-3); font-size: .82rem; min-height: 1.3em; }
+.plan ul { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 10px; font-size: .94rem; flex: 1; }
+.plan li { display: flex; gap: 10px; color: var(--ink-2); }
+.plan li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 50%; background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%23b9791a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat; }
+.plan .btn { width: 100%; }
+
+/* ====================================================================
+   Revenue planner
+   ==================================================================== */
+.planner { display: grid; gap: 24px; margin-top: 44px; }
+@media (min-width: 960px) { .planner { grid-template-columns: 360px 1fr; } }
+.controls { display: grid; gap: 20px; align-content: start; }
+.field label { display: flex; justify-content: space-between; gap: 10px; font-size: .9rem; font-weight: 500; margin-bottom: 8px; }
+.field output { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 600; }
+input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
+.results { display: grid; gap: 18px; min-width: 0; }
+.kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 640px) { .kpis { grid-template-columns: repeat(4, 1fr); } }
+.kpi { background: var(--bg-2); border-radius: 12px; padding: 14px 16px; min-width: 0; }
+.kpi small { display: block; color: var(--ink-3); font-size: .78rem; }
+.kpi b { font: 700 1.35rem var(--serif); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.chart { width: 100%; height: auto; }
+.chart .grid line { stroke: var(--line); }
+.chart text { fill: var(--ink-3); font: 11px var(--sans); }
+.chart .area { fill: var(--accent); opacity: .14; }
+.chart .line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+.chart .ceil { stroke: var(--ink-3); stroke-dasharray: 4 4; stroke-width: 1.2; }
+.reality { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; color: var(--ink-2); font-size: .95rem; }
+.reality strong { color: var(--ink); }
+
+/* ====================================================================
+   Testimonials
+   ==================================================================== */
+.quotes { display: grid; gap: 18px; margin-top: 44px; }
+@media (min-width: 860px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+blockquote { margin: 0; }
+blockquote p { font: 500 1.12rem/1.5 var(--serif); }
+blockquote footer { margin-top: 18px; color: var(--ink-3); font-size: .88rem; }
+blockquote footer b { color: var(--ink); display: block; font-weight: 600; }
+.note { font-size: .78rem; color: var(--ink-3); margin-top: 18px; text-align: center; }
+
+/* ====================================================================
+   FAQ
+   ==================================================================== */
+.faq { max-width: 760px; margin: 40px auto 0; }
+details { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; padding: 22px 36px 22px 0; font-weight: 600; position: relative; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font: 400 1.5rem var(--sans); color: var(--ink-3); transition: transform .2s; }
+details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+details p { color: var(--ink-2); padding: 0 0 22px; }
+
+/* ====================================================================
+   CTA + footer
+   ==================================================================== */
+.final { background: var(--ink); color: var(--bg); border-radius: 24px; padding: 56px 24px; text-align: center; }
+.final .lede { color: color-mix(in srgb, var(--bg) 75%, transparent); margin: 16px auto 0; }
+.signup { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 30px auto 0; max-width: 480px; }
+.signup input {
+  flex: 1 1 240px; min-height: 48px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--bg) 25%, transparent);
+  background: transparent; color: var(--bg); padding: 0 20px; font: 1rem var(--sans); min-width: 0;
+}
+.signup input::placeholder { color: color-mix(in srgb, var(--bg) 55%, transparent); }
+.signup .btn { flex: 0 0 auto; }
+.form-msg { min-height: 1.5em; margin-top: 14px; font-size: .92rem; }
+.form-msg.ok { color: var(--accent); }
+.form-msg.err { color: var(--warn); }
+footer.site { padding: 48px 0 40px; color: var(--ink-3); font-size: .9rem; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 18px; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--ink); }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.no-js .reveal { opacity: 1; transform: none; }
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site" id="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Halcyon home">
+      <span class="logo-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 26V6h4.5v8h9V6H25v20h-4.5v-8h-9v8z" fill="var(--accent-ink)"/></svg></span>
+      <span data-cfg="brand">Halcyon</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#planner">Revenue planner</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle color theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="#signup">Sign in</a>
+      <a class="btn btn-primary" href="#pricing">Start free</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Invoicing for independents</p>
+        <h1>Do the work.<br>Get paid <em>this week</em>.</h1>
+        <p class="lede">Halcyon turns your proposals into invoices, your invoices into payments, and your clients into repeat clients. One link. Cards, bank transfer and Apple Pay. Automatic, polite reminders so you never chase a payment again.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#pricing">Start free — no card needed</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <div class="trust"><span>Free plan forever</span><span>Set up in 3 minutes</span><span>Cancel anytime</span></div>
+      </div>
+
+      <div class="mock" aria-label="Example invoice">
+        <div class="mock-head">
+          <div><small>Invoice #1042 · Due in 7 days</small><strong>Brand refresh, phase 2</strong></div>
+          <span class="pill" id="mockStatus">Awaiting payment</span>
+        </div>
+        <table>
+          <tbody>
+            <tr><td>Discovery workshop</td><td>$1,200.00</td></tr>
+            <tr><td>Identity system (14 hrs)</td><td>$2,450.00</td></tr>
+            <tr><td>Asset handoff</td><td>$350.00</td></tr>
+          </tbody>
+        </table>
+        <div class="mock-total"><span>Total due</span><b>$4,000.00</b></div>
+        <button class="btn btn-primary mock-pay" id="mockPay" type="button">Pay $4,000.00</button>
+        <div class="toast" id="toast" role="status" aria-live="polite"><i></i><span>Paid by card · funds arrive in 2 days</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat"><b>30s</b><span>to send an invoice</span></div>
+      <div class="stat"><b>2×</b><span>faster payment (target)</span></div>
+      <div class="stat"><b>0</b><span>awkward follow-up emails</span></div>
+      <div class="stat"><b>$0</b><span>to get started</span></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="wrap">
+      <div class="center reveal">
+        <p class="eyebrow">Everything between "done" and "paid"</p>
+        <h2>Built for people who bill by the project</h2>
+        <p class="lede" style="margin-top:16px">No accounting degree required. Halcyon handles the boring part of running a one-person business so you can get back to the part you're good at.</p>
+      </div>
+      <div class="features-grid">
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+          <h3>Invoices in 30 seconds</h3>
+          <p>Pick a client, add line items or pull them from a saved proposal, hit send. Your branding, your terms, every time.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div>
+          <h3>One-click payment links</h3>
+          <p>Clients pay by card, bank transfer, Apple Pay or Google Pay — no account, no login, no friction.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+          <h3>Reminders that sound like you</h3>
+          <p>Friendly nudges before and after the due date, written in your voice. You stay the nice one.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
+          <h3>Retainers on autopilot</h3>
+          <p>Recurring invoices and auto-charge for monthly clients. Predictable income without lifting a finger.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+          <h3>A portal for every client</h3>
+          <p>Proposals, contracts, files and invoice history in one tidy, branded page your clients will actually use.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+          <h3>Tax-time ready</h3>
+          <p>Income, expenses and outstanding balances, exportable to your accountant in one click. April becomes boring.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how" style="padding-top:0">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>Three steps. Then it runs itself.</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><h3>Connect your payout account</h3><p>Link your bank in a couple of minutes. Payments land directly with you — we never hold your money longer than the processor requires.</p></div>
+        <div class="step reveal"><h3>Send your first invoice</h3><p>Import clients from a spreadsheet or add them as you go. Every invoice ships with a secure payment link.</p></div>
+        <div class="step reveal"><h3>Let Halcyon follow up</h3><p>Reminders, receipts, recurring charges and thank-you notes go out automatically. You get a ping when the money arrives.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap center">
+      <div class="reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2>Pays for itself with one invoice</h2>
+        <p class="lede" style="margin-top:16px">Start free. Upgrade when you're busy enough to need it. Standard payment processing fees apply on every plan.</p>
+      </div>
+      <div class="billing" role="group" aria-label="Billing period">
+        <button type="button" data-period="monthly" aria-pressed="false">Monthly</button>
+        <button type="button" data-period="annual" aria-pressed="true">Annual <span class="save">−20%</span></button>
+      </div>
+      <div class="plans" id="plans"></div>
+    </div>
+  </section>
+
+  <!-- PLANNER -->
+  <section id="planner">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">For founders &amp; investors</p>
+        <h2>Revenue planner</h2>
+        <p class="lede" style="margin-top:16px">Move the sliders to model monthly recurring revenue over the next 36 months. The dashed line is your ceiling — where new customers exactly replace the ones who churn.</p>
+      </div>
+      <div class="planner card">
+        <div class="controls">
+          <div class="field"><label for="visitors">Monthly visitors <output id="visitorsOut"></output></label><input id="visitors" type="range" min="1000" max="2000000" step="1000" value="50000"></div>
+          <div class="field"><label for="conv">Visitor → paid conversion <output id="convOut"></output></label><input id="conv" type="range" min="0.1" max="10" step="0.1" value="2"></div>
+          <div class="field"><label for="arpu">Avg. revenue per customer / mo <output id="arpuOut"></output></label><input id="arpu" type="range" min="5" max="500" step="1" value="26"></div>
+          <div class="field"><label for="churn">Monthly churn <output id="churnOut"></output></label><input id="churn" type="range" min="0.5" max="15" step="0.1" value="3.5"></div>
+          <div class="field"><label for="growth">Traffic growth / mo <output id="growthOut"></output></label><input id="growth" type="range" min="0" max="20" step="0.5" value="5"></div>
+        </div>
+        <div class="results">
+          <div class="kpis">
+            <div class="kpi"><small>MRR in 12 mo</small><b id="k12">—</b></div>
+            <div class="kpi"><small>MRR in 36 mo</small><b id="k36">—</b></div>
+            <div class="kpi"><small>ARR in 36 mo</small><b id="karr">—</b></div>
+            <div class="kpi"><small>Customers in 36 mo</small><b id="kcust">—</b></div>
+          </div>
+          <svg class="chart" id="chart" viewBox="0 0 640 280" role="img" aria-labelledby="chartTitle"><title id="chartTitle">Projected monthly recurring revenue over 36 months</title></svg>
+          <p class="reality" id="reality"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="center reveal"><p class="eyebrow">What early users say</p><h2>Less chasing. More doing.</h2></div>
+      <div class="quotes">
+        <blockquote class="card reveal"><p>"I used to spend Friday afternoons writing 'just following up' emails. Now I don't even know which clients paid late — Halcyon handled it."</p><footer><b>Freelance designer</b>Sample testimonial</footer></blockquote>
+        <blockquote class="card reveal"><p>"Switching my retainers to auto-charge was the single best thing I did for my cash flow this year."</p><footer><b>Independent developer</b>Sample testimonial</footer></blockquote>
+        <blockquote class="card reveal"><p>"My clients told me the payment page was the most professional part of working with me. I'll take it."</p><footer><b>Copywriter &amp; strategist</b>Sample testimonial</footer></blockquote>
+      </div>
+      <p class="note">Placeholder testimonials — replace with real, attributed quotes from your customers before launch.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="center reveal"><p class="eyebrow">FAQ</p><h2>Questions, answered</h2></div>
+      <div class="faq">
+        <details><summary>Is the free plan really free?</summary><p>Yes. Send up to 5 invoices a month with payment links, forever, with no card required. You only pay standard processing fees when a client pays you.</p></details>
+        <details><summary>How fast do I receive money?</summary><p>Card payments typically arrive in your bank account within 2 business days; bank transfers depend on your region. Halcyon never sits on your funds.</p></details>
+        <details><summary>Do my clients need an account?</summary><p>No. They open a secure link, review the invoice and pay. They can optionally save a payment method for future invoices.</p></details>
+        <details><summary>Can I use my own branding?</summary><p>On Pro and Studio you can add your logo, colors and a custom email domain. Studio also removes Halcyon branding entirely.</p></details>
+        <details><summary>What happens if I cancel?</summary><p>You keep access until the end of your billing period, then drop to the free plan. Export every invoice and client record any time — your data is yours.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="signup" style="padding-top:0">
+    <div class="wrap">
+      <div class="final reveal">
+        <h2>Your next invoice could be your last chase.</h2>
+        <p class="lede">Join the early-access list and we'll set you up personally. No spam, unsubscribe anytime.</p>
+        <form class="signup" id="signupForm" novalidate>
+          <label for="email" class="sr-only">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@studio.com" required>
+          <button class="btn btn-primary" type="submit">Get early access</button>
+        </form>
+        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>© <span id="year"></span> <span data-cfg="brand">Halcyon</span>. All rights reserved.</span>
+    <nav aria-label="Footer">
+      <a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <a href="#" data-link="privacy">Privacy</a><a href="#" data-link="terms">Terms</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ======================================================================
+   CONFIG — the only block you need to edit to launch.
+   ----------------------------------------------------------------------
+   checkout:   paste a Stripe Payment Link (or any checkout URL) per plan
+               and period. Empty string → button scrolls to the signup form.
+   formEndpoint: any service that accepts a POST of form data
+               (Formspree, Basin, your own API). Empty → stored locally
+               in the browser so you can test the flow.
+   ====================================================================== */
+const CONFIG = {
+  brand: "Halcyon",
+  formEndpoint: "",
+  privacyUrl: "#",
+  termsUrl: "#",
+  annualDiscount: 0.20,
+  plans: [
+    {
+      id: "free", name: "Free", desc: "For your first few clients.",
+      monthly: 0,
+      features: ["5 invoices per month", "Card & bank payment links", "Automatic reminders", "Client portal"],
+      cta: "Start free",
+      checkout: { monthly: "", annual: "" }
+    },
+    {
+      id: "pro", name: "Pro", desc: "For full-time independents.", featured: true,
+      monthly: 19,
+      features: ["Unlimited invoices", "Recurring invoices & auto-charge", "Your logo, colors & domain", "Proposals & e-signed contracts", "Tax-ready exports"],
+      cta: "Start 14-day trial",
+      checkout: { monthly: "", annual: "" }
+    },
+    {
+      id: "studio", name: "Studio", desc: "For small teams and agencies.",
+      monthly: 49,
+      features: ["Everything in Pro", "Up to 5 team members", "Remove Halcyon branding", "Multi-currency & multi-entity", "Priority support"],
+      cta: "Start 14-day trial",
+      checkout: { monthly: "", annual: "" }
+    }
+  ]
+};
+
+(function () {
+  "use strict";
+  document.body.classList.remove("no-js");
+
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+  };
+
+  /* ---------- Brand & links ---------- */
+  $$('[data-cfg="brand"]').forEach(n => { n.textContent = CONFIG.brand; });
+  $("#year").textContent = new Date().getFullYear();
+  $('[data-link="privacy"]').href = CONFIG.privacyUrl;
+  $('[data-link="terms"]').href = CONFIG.termsUrl;
+
+  /* ---------- Theme toggle ---------- */
+  const root = document.documentElement;
+  const savedTheme = store.get("theme");
+  if (savedTheme === "light" || savedTheme === "dark") root.dataset.theme = savedTheme;
+  $("#themeBtn").addEventListener("click", () => {
+    const current = root.dataset.theme ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = current === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    store.set("theme", next);
+    drawPlanner();
+  });
+
+  /* ---------- Sticky header border ---------- */
+  const header = $("header.site");
+  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Hero mock interaction ---------- */
+  const payBtn = $("#mockPay"), toast = $("#toast"), status = $("#mockStatus");
+  payBtn.addEventListener("click", () => {
+    status.textContent = "Paid"; status.classList.add("paid");
+    payBtn.textContent = "Payment received ✓"; payBtn.disabled = true;
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+      status.textContent = "Awaiting payment"; status.classList.remove("paid");
+      payBtn.textContent = "Pay $4,000.00"; payBtn.disabled = false;
+    }, 4000);
+  });
+
+  /* ---------- Pricing ---------- */
+  const money = (n, d = 0) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  let period = store.get("period") === "monthly" ? "monthly" : "annual";
+
+  function renderPlans() {
+    const host = $("#plans");
+    host.innerHTML = "";
+    CONFIG.plans.forEach(p => {
+      const perMonth = period === "annual" ? p.monthly * (1 - CONFIG.annualDiscount) : p.monthly;
+      const hasCents = Math.round(perMonth * 100) % 100 !== 0;
+      const note = p.monthly === 0 ? "Free forever"
+        : period === "annual" ? money(perMonth * 12, hasCents ? 2 : 0) + " billed yearly" : "Billed monthly";
+      const url = (p.checkout && p.checkout[period]) || "";
+      const el = document.createElement("article");
+      el.className = "plan" + (p.featured ? " featured" : "");
+      el.innerHTML = `
+        <h3></h3><p class="desc"></p>
+        <div class="price"><b></b><span>/ month</span></div>
+        <p class="price-note"></p>
+        <ul></ul>
+        <a class="btn ${p.featured ? "btn-primary" : "btn-ghost"}"></a>`;
+      $("h3", el).textContent = p.name;
+      $(".desc", el).textContent = p.desc;
+      $(".price b", el).textContent = money(perMonth, hasCents ? 2 : 0);
+      $(".price-note", el).textContent = note;
+      const ul = $("ul", el);
+      p.features.forEach(f => { const li = document.createElement("li"); li.textContent = f; ul.appendChild(li); });
+      const a = $("a", el);
+      a.textContent = p.cta;
+      if (url) { a.href = url; a.rel = "noopener"; }
+      else { a.href = "#signup"; a.dataset.plan = p.id; }
+      host.appendChild(el);
+    });
+    $$(".billing button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.period === period)));
+  }
+  $$(".billing button").forEach(b => b.addEventListener("click", () => {
+    period = b.dataset.period; store.set("period", period); renderPlans();
+  }));
+  $("#plans").addEventListener("click", e => {
+    const a = e.target.closest("a[data-plan]");
+    if (a) setTimeout(() => $("#email").focus({ preventScroll: true }), 400);
+  });
+  renderPlans();
+
+  /* ---------- Revenue planner ---------- */
+  const inputs = ["visitors", "conv", "arpu", "churn", "growth"].reduce((o, id) => (o[id] = $("#" + id), o), {});
+  const fmt = {
+    visitors: v => Number(v).toLocaleString("en-US"),
+    conv: v => Number(v).toFixed(1) + "%",
+    arpu: v => "$" + v,
+    churn: v => Number(v).toFixed(1) + "%",
+    growth: v => Number(v).toFixed(1) + "%"
+  };
+  function compact(n) {
+    const abs = Math.abs(n);
+    const units = [[1e12, "T"], [1e9, "B"], [1e6, "M"], [1e3, "K"]];
+    for (const [v, s] of units) if (abs >= v) return "$" + (n / v).toFixed(n / v >= 100 ? 0 : 1) + s;
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+  function compactNum(n) {
+    return compact(n).replace("$", "");
+  }
+
+  function simulate() {
+    const visitors0 = +inputs.visitors.value, conv = +inputs.conv.value / 100,
+          arpu = +inputs.arpu.value, churn = +inputs.churn.value / 100, g = +inputs.growth.value / 100;
+    const series = []; let customers = 0;
+    for (let m = 1; m <= 36; m++) {
+      const visitors = visitors0 * Math.pow(1 + g, m - 1);
+      customers = customers * (1 - churn) + visitors * conv;
+      series.push({ m, customers, mrr: customers * arpu });
+    }
+    const lastNew = visitors0 * Math.pow(1 + g, 35) * conv;
+    const ceiling = (lastNew / churn) * arpu; // steady-state MRR at month-36 traffic
+    return { series, arpu, churn, ceiling };
+  }
+
+  const NS = "http://www.w3.org/2000/svg";
+  function svg(tag, attrs, parent) {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  function drawPlanner() {
+    Object.keys(inputs).forEach(k => { $("#" + k + "Out").textContent = fmt[k](inputs[k].value); });
+    const { series, arpu, ceiling } = simulate();
+    const at = m => series[m - 1];
+    $("#k12").textContent = compact(at(12).mrr);
+    $("#k36").textContent = compact(at(36).mrr);
+    $("#karr").textContent = compact(at(36).mrr * 12);
+    $("#kcust").textContent = compactNum(at(36).customers);
+
+    // Chart
+    const chart = $("#chart");
+    $$("g, path, line, text:not(title)", chart).forEach(n => n.remove());
+    const W = 640, H = 280, L = 56, R = 14, T = 14, B = 30;
+    const maxY = Math.max(at(36).mrr, ceiling) * 1.08 || 1;
+    const x = m => L + ((m - 1) / 35) * (W - L - R);
+    const y = v => T + (1 - v / maxY) * (H - T - B);
+    const grid = svg("g", { class: "grid" }, chart);
+    for (let i = 0; i <= 4; i++) {
+      const v = (maxY / 4) * i, yy = y(v);
+      svg("line", { x1: L, x2: W - R, y1: yy, y2: yy }, grid);
+      const t = svg("text", { x: L - 8, y: yy + 4, "text-anchor": "end" }, grid); t.textContent = compact(v);
+    }
+    [1, 6, 12, 18, 24, 30, 36].forEach(m => {
+      const t = svg("text", { x: x(m), y: H - 8, "text-anchor": "middle" }, grid); t.textContent = "M" + m;
+    });
+    const pts = series.map(s => `${x(s.m).toFixed(1)},${y(s.mrr).toFixed(1)}`);
+    svg("path", { class: "area", d: `M${x(1)},${y(0)} L${pts.join(" L")} L${x(36)},${y(0)} Z` }, chart);
+    svg("path", { class: "line", d: "M" + pts.join(" L") }, chart);
+    if (ceiling < maxY) svg("line", { class: "ceil", x1: L, x2: W - R, y1: y(ceiling), y2: y(ceiling) }, chart);
+
+    // Reality check against a $1T / month target
+    const TARGET = 1e12, WORLD_POP = 8.2e9;
+    const needed = TARGET / arpu;
+    const ratio = needed / WORLD_POP;
+    const pct = (at(36).mrr / TARGET) * 100;
+    const pctText = pct < 0.0001 ? "less than 0.0001%" : pct.toPrecision(2) + "%";
+    $("#reality").innerHTML =
+      `<strong>Reality check:</strong> at ${fmt.arpu(arpu)}/month, reaching <strong>$1 trillion in monthly revenue</strong> would take ` +
+      `<strong>${compactNum(needed)} paying customers</strong> — ` +
+      (ratio >= 1
+        ? `about <strong>${ratio.toFixed(ratio >= 10 ? 0 : 1)}× everyone alive on Earth</strong>. `
+        : `<strong>${(ratio * 100).toFixed(0)}% of every human on Earth</strong>. `) +
+      `That's roughly 11% of the entire world economy, every month. This model gets you to ${pctText} of it in three years — ` +
+      `which, at ${compact(at(36).mrr * 12)} a year, is a very real business.`;
+  }
+  Object.values(inputs).forEach(i => i.addEventListener("input", drawPlanner));
+  drawPlanner();
+
+  /* ---------- Signup form ---------- */
+  const form = $("#signupForm"), msg = $("#formMsg"), email = $("#email");
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const value = email.value.trim();
+    msg.className = "form-msg";
+    if (!EMAIL_RE.test(value)) {
+      msg.textContent = "Please enter a valid email address.";
+      msg.classList.add("err"); email.setAttribute("aria-invalid", "true"); email.focus();
+      return;
+    }
+    email.removeAttribute("aria-invalid");
+    const btn = $("button", form); btn.disabled = true; btn.textContent = "Joining…";
+    try {
+      if (CONFIG.formEndpoint) {
+        const body = new FormData(); body.append("email", value); body.append("source", location.href);
+        const res = await fetch(CONFIG.formEndpoint, { method: "POST", body, headers: { Accept: "application/json" } });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+      } else {
+        let list = [];
+        try { list = JSON.parse(store.get("waitlist") || "[]"); } catch (_) {}
+        if (!list.includes(value)) list.push(value);
+        store.set("waitlist", JSON.stringify(list));
+      }
+      msg.textContent = "You're on the list. We'll be in touch within one business day.";
+      msg.classList.add("ok"); form.reset();
+    } catch (err) {
+      msg.textContent = "Something went wrong — please try again in a moment.";
+      msg.classList.add("err");
+    } finally {
+      btn.disabled = false; btn.textContent = "Get early access";
+    }
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+    }), { rootMargin: "0px 0px -8% 0px" });
+    $$(".reveal").forEach(n => io.observe(n));
+  } else {
+    $$(".reveal").forEach(n => n.classList.add("in"));
+  }
+})();
+</script>
+</body>
+</html>
