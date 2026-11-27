@@ -239,8 +239,8 @@ img.fx.in{opacity:1}
 
 <main>
 <section class="hero" id="accueil">
-  <!-- Film IA d'accueil : video/riviera.mp4 (ordinateur, 1920×1080) et video/riviera-mobile.mp4 (mobile, 1280×720), montés en aller-retour pour une boucle sans saut -->
-  <video class="v" autoplay muted loop playsinline preload="auto" poster="img/hero-poster.webp"><source src="video/riviera-mobile.mp4" type="video/mp4" media="(max-width: 900px)"><source src="video/riviera.mp4" type="video/mp4"></video>
+  <!-- Film IA d'accueil : video/riviera.mp4 (ordinateur, 1920×1080) et video/riviera-mobile.mp4 (écrans verticaux, recadrage 608×1080), montés en aller-retour pour une boucle sans saut -->
+  <video class="v" autoplay muted loop playsinline preload="auto" poster="img/hero-poster.webp"><source src="video/riviera-mobile.mp4" type="video/mp4" media="(max-aspect-ratio: 4/5)"><source src="video/riviera.mp4" type="video/mp4"></video>
   <div class="opening" id="intro" aria-hidden="true">
     <img class="mono" src="img/mono-light.png" alt="">
     <svg viewBox="0 0 760 90"><text x="380" y="70" text-anchor="middle">ATELIER AZAR</text></svg>
