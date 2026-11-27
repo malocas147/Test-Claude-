@@ -6,7 +6,7 @@
 <title>Atelier Azar</title>
 <meta name="description" content="Atelier Azar, lampes monumentales de 3 à 4 mètres créées à Genève par Pascal Pupillo.">
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preload" as="image" href="img/scene-riviera.webp" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-poster.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -239,8 +239,8 @@ img.fx.in{opacity:1}
 
 <main>
 <section class="hero" id="accueil">
-  <!-- Remplacez video/riviera.mp4 par votre film IA (16:9, 1920×1080, 8 à 15 s, sans son, ~3 Mo) -->
-  <video class="v" autoplay muted loop playsinline preload="auto" poster="img/scene-riviera.webp"><source src="video/riviera.mp4" type="video/mp4"></video>
+  <!-- Film IA d'accueil : video/riviera.mp4 (ordinateur, 1920×1080) et video/riviera-mobile.mp4 (mobile, 1280×720), montés en aller-retour pour une boucle sans saut -->
+  <video class="v" autoplay muted loop playsinline preload="auto" poster="img/hero-poster.webp"><source src="video/riviera-mobile.mp4" type="video/mp4" media="(max-width: 900px)"><source src="video/riviera.mp4" type="video/mp4"></video>
   <div class="opening" id="intro" aria-hidden="true">
     <img class="mono" src="img/mono-light.png" alt="">
     <svg viewBox="0 0 760 90"><text x="380" y="70" text-anchor="middle">ATELIER AZAR</text></svg>
