@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Collections – Atelier Azar</title>
+<meta name="description" content="Shanghai, Kailedo, Omaya, Saint-Moritz et Bali : cinq lampes monumentales en versions XL (3 m) et XXL (4 m).">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:title" content="Collections – Atelier Azar">
+<meta property="og:description" content="Shanghai, Kailedo, Omaya, Saint-Moritz et Bali : cinq lampes monumentales en versions XL (3 m) et XXL (4 m).">
+<meta property="og:image" content="img/hero-poster.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header id="top">
+  <button class="pill menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer"><i></i><span>Menu</span></button>
+  <a class="logo" href="index.html" aria-label="Atelier Azar, accueil"><img class="ll" src="img/logo-light.png" alt="Atelier Azar"><img class="ld" src="img/logo-dark.png" alt=""></a>
+  <a class="pill cta" href="contact.html"><span>Contact</span><span aria-hidden="true" style="display:inline">→</span></a>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <button class="pill" id="drawerClose">Fermer</button>
+  <nav aria-label="Menu"><a href="index.html">Accueil</a><a href="collections.html" aria-current="page">Collections</a><a href="films.html">Films & Inspirations</a><a href="atelier.html">L'Atelier</a><a href="contact.html">Contact</a></nav>
+  <aside><p class="info">Atelier Azar Sàrl · Avenue de Châtelaine 36, CH-1203 Genève<br>+41 22 777 00 70 · info@redzone.ch</p></aside>
+</div>
+<main>
+<section class="page-hero">
+  <img src="img/scene-bali-console.webp" alt="Deux lampes Bali sur une console ancienne, entre deux palmiers" fetchpriority="high">
+  <div class="copy"><p class="label">Collections</p><h1>Cinq silhouettes, deux échelles</h1><p>Chaque modèle existe en XL (3 m) et XXL (4 m). Choisissez une finition, puis ouvrez la fiche pour voir les cotes.</p></div>
+</section>
+
+<section class="band">
+  <div class="wrap"><div class="grid" id="grid"></div></div>
+</section>
+
+<section class="band scale" id="echelle" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <h2>Penser à l'échelle</h2>
+      <p style="margin-top:18px">Une lampe Atelier Azar se mesure à l'architecture. Indiquez la hauteur sous plafond de votre lieu pour voir quelle version y respire.</p>
+      <div class="ctrl">
+        <label for="ceil">Hauteur sous plafond <output id="ceilOut">4,80 m</output></label>
+        <input type="range" id="ceil" min="2.5" max="8" step="0.1" value="4.8">
+      </div>
+      <p class="verdict" id="verdict"></p>
+    </div>
+    <div class="fig" id="fig" role="img" aria-label="Élévation à l'échelle : personne de 1,80 m, lampe XL de 3 m et lampe XXL de 4 m sous le plafond choisi"></div>
+  </div>
+</section>
+<section class="band cta-band">
+  <div class="wrap">
+    <div><h2>Un modèle vous parle ?</h2><p style="margin:16px 0 0;color:var(--soft);max-width:32em">Dites-nous lequel, avec la hauteur de votre lieu : nous revenons avec une proposition et un premier film.</p></div>
+    <div class="acts"><a class="btn fill" href="contact.html">Demander un devis</a><a class="btn" href="films.html">Voir les films</a></div>
+  </div>
+</section>
+</main>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fiche produit">
+  <button class="x pill" id="lbClose">Fermer</button>
+  <img id="lbImg" alt="">
+  <aside id="lbInfo"></aside>
+</div>
+<footer class="band">
+  <div class="cols">
+    <div><img src="img/logo-dark.png" alt="Atelier Azar" style="margin-bottom:18px"><p>Lampes monumentales et objets hors échelle, imaginés à Genève.</p></div>
+    <div><h4>Pages</h4><nav><a href="collections.html">Collections</a><a href="films.html">Films &amp; Inspirations</a><a href="atelier.html">L'Atelier</a><a href="contact.html">Contact</a></nav></div>
+    <div><h4>Atelier</h4><p>Avenue de Châtelaine 36<br>CH-1203 Genève, Suisse</p></div>
+    <div><h4>Contact</h4><nav><a href="tel:+41227770070">+41 22 777 00 70</a><a href="mailto:info@redzone.ch">info@redzone.ch</a></nav></div>
+  </div>
+  <div class="legal"><span>© 2026 Atelier Azar Sàrl, Genève</span><span>Films et mises en situation réalisés par IA</span></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Films & Inspirations – Atelier Azar</title>
+<meta name="description" content="Les lampes Atelier Azar en situation : films réalisés par IA et mises en scène dans des lieux d'exception.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:title" content="Films & Inspirations – Atelier Azar">
+<meta property="og:description" content="Les lampes Atelier Azar en situation : films réalisés par IA et mises en scène dans des lieux d'exception.">
+<meta property="og:image" content="img/hero-poster.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header id="top">
+  <button class="pill menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer"><i></i><span>Menu</span></button>
+  <a class="logo" href="index.html" aria-label="Atelier Azar, accueil"><img class="ll" src="img/logo-light.png" alt="Atelier Azar"><img class="ld" src="img/logo-dark.png" alt=""></a>
+  <a class="pill cta" href="contact.html"><span>Contact</span><span aria-hidden="true" style="display:inline">→</span></a>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <button class="pill" id="drawerClose">Fermer</button>
+  <nav aria-label="Menu"><a href="index.html">Accueil</a><a href="collections.html">Collections</a><a href="films.html" aria-current="page">Films & Inspirations</a><a href="atelier.html">L'Atelier</a><a href="contact.html">Contact</a></nav>
+  <aside><p class="info">Atelier Azar Sàrl · Avenue de Châtelaine 36, CH-1203 Genève<br>+41 22 777 00 70 · info@redzone.ch</p></aside>
+</div>
+<main>
+<section class="page-hero">
+  <video class="v" autoplay muted loop playsinline preload="auto" poster="img/hero-poster.webp"><source src="video/riviera-mobile.mp4" type="video/mp4" media="(max-aspect-ratio: 4/5)"><source src="video/riviera.mp4" type="video/mp4"></video>
+  <div class="copy"><p class="label">Films & Inspirations</p><h1>La lumière en situation</h1><p>Chaque pièce est révélée en film, généré par intelligence artificielle, dans des lieux qui lui ressemblent.</p></div>
+</section>
+
+<section class="band films" id="films">
+  <div class="wrap">
+    <div class="head"><h2>Les films</h2><p>Une terrasse au couchant, un jardin de palmiers, un salon face à la mer.</p></div>
+    <figure class="lead">
+      <video class="v" muted loop playsinline preload="none" poster="img/scene-terrasse.webp"><source src="video/terrasse.mp4" type="video/mp4"></video>
+      <figcaption><p class="label" style="color:#e6dccd">Omaya Silver XXL</p><h3>Une terrasse suspendue au-dessus des collines</h3></figcaption>
+    </figure>
+    <div class="row">
+      <figure><video class="v" muted loop playsinline preload="none" poster="img/scene-desert-champagne.webp" style="height:100%;object-fit:cover"><source src="video/desert.mp4" type="video/mp4"></video></figure>
+      <figure><video class="v" muted loop playsinline preload="none" poster="img/scene-bali-terrasse.webp" style="height:100%;object-fit:cover"><source src="video/bali.mp4" type="video/mp4"></video></figure>
+      <div class="note">
+        <p class="label">Votre lieu, avant la fabrication</p>
+        <h3 style="margin:12px 0 16px">Voir la lampe chez soi</h3>
+        <p>Envoyez quelques photos de votre espace : nous réalisons un film IA de la pièce choisie, à l'échelle, dans votre décor. Vous validez la proportion et la finition avant que l'atelier ne commence.</p>
+        <p><a class="btn fill" href="contact.html">Demander un film</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="inspirations" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2>Inspirations</h2><p>Riviera, désert, Méditerranée : les pièces en situation. Touchez une image pour l'agrandir.</p></div>
+    <div class="mosaic" id="mosaic"></div>
+  </div>
+</section>
+<section class="band cta-band">
+  <div class="wrap">
+    <div><h2>Imaginez-la chez vous</h2><p style="margin:16px 0 0;color:var(--soft);max-width:32em">Nous réalisons un film de la lampe choisie dans votre propre décor.</p></div>
+    <div class="acts"><a class="btn fill" href="contact.html">Demander un film</a><a class="btn" href="collections.html">Voir les collections</a></div>
+  </div>
+</section>
+</main>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fiche produit">
+  <button class="x pill" id="lbClose">Fermer</button>
+  <img id="lbImg" alt="">
+  <aside id="lbInfo"></aside>
+</div>
+<footer class="band">
+  <div class="cols">
+    <div><img src="img/logo-dark.png" alt="Atelier Azar" style="margin-bottom:18px"><p>Lampes monumentales et objets hors échelle, imaginés à Genève.</p></div>
+    <div><h4>Pages</h4><nav><a href="collections.html">Collections</a><a href="films.html">Films &amp; Inspirations</a><a href="atelier.html">L'Atelier</a><a href="contact.html">Contact</a></nav></div>
+    <div><h4>Atelier</h4><p>Avenue de Châtelaine 36<br>CH-1203 Genève, Suisse</p></div>
+    <div><h4>Contact</h4><nav><a href="tel:+41227770070">+41 22 777 00 70</a><a href="mailto:info@redzone.ch">info@redzone.ch</a></nav></div>
+  </div>
+  <div class="legal"><span>© 2026 Atelier Azar Sàrl, Genève</span><span>Films et mises en situation réalisés par IA</span></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

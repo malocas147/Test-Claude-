@@ -1,6 +1,18 @@
 # Atelier Azar, site vitrine
 
-Site statique en une page (`index.html`), sans dépendance : ouvrez le fichier ou déposez le dossier sur n'importe quel hébergeur (Netlify, Vercel, OVH, Infomaniak…).
+Site statique en 5 pages, sans dépendance. Déposez le dossier entier sur n'importe quel hébergeur (Cloudflare Pages, Vercel, Infomaniak…).
+
+| Page | Fichier |
+|---|---|
+| Accueil | `index.html` |
+| Collections | `collections.html` |
+| Films & Inspirations | `films.html` |
+| L'Atelier | `atelier.html` |
+| Contact | `contact.html` |
+
+Le style commun est dans `assets/style.css`, les scripts dans `assets/site.js` (données des lampes, fiches, outil d'échelle, formulaire).
+
+Les pages sont générées par `tools/build_atelier.py` (à la racine du dépôt, hors du dossier publié) : modifiez les textes dans ce script puis lancez `python3 tools/build_atelier.py`. Le menu et le pied de page restent ainsi identiques sur toutes les pages.
 
 ## Remplacer les vidéos par vos films IA
 

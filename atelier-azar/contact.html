@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact – Atelier Azar</title>
+<meta name="description" content="Parlez-nous de votre lieu : Atelier Azar, Avenue de Châtelaine 36, Genève. +41 22 777 00 70.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:title" content="Contact – Atelier Azar">
+<meta property="og:description" content="Parlez-nous de votre lieu : Atelier Azar, Avenue de Châtelaine 36, Genève. +41 22 777 00 70.">
+<meta property="og:image" content="img/hero-poster.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header id="top">
+  <button class="pill menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer"><i></i><span>Menu</span></button>
+  <a class="logo" href="index.html" aria-label="Atelier Azar, accueil"><img class="ll" src="img/logo-light.png" alt="Atelier Azar"><img class="ld" src="img/logo-dark.png" alt=""></a>
+  <a class="pill cta" href="contact.html"><span>Contact</span><span aria-hidden="true" style="display:inline">→</span></a>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <button class="pill" id="drawerClose">Fermer</button>
+  <nav aria-label="Menu"><a href="index.html">Accueil</a><a href="collections.html">Collections</a><a href="films.html">Films & Inspirations</a><a href="atelier.html">L'Atelier</a><a href="contact.html" aria-current="page">Contact</a></nav>
+  <aside><p class="info">Atelier Azar Sàrl · Avenue de Châtelaine 36, CH-1203 Genève<br>+41 22 777 00 70 · info@redzone.ch</p></aside>
+</div>
+<main>
+<section class="page-hero short">
+  <img src="img/scene-desert-silver.webp" alt="Lampe Omaya Silver dans un jardin de palmiers, la nuit" fetchpriority="high" style="object-position:50% 40%">
+  <div class="copy"><p class="label">Contact</p><h1>Parlons de votre lieu</h1><p>Chaque pièce est réalisée à la demande. Décrivez votre projet, nous revenons vers vous avec une proposition et un premier film.</p></div>
+</section>
+
+<section class="band contact">
+  <div class="wrap">
+    <div>
+      <h2>Atelier Azar</h2>
+      <address>
+        Atelier Azar Sàrl<br>
+        Avenue de Châtelaine 36<br>
+        CH-1203 Genève, Suisse<br>
+        <a href="tel:+41227770070">+41 22 777 00 70</a><br>
+        <a href="mailto:info@redzone.ch">info@redzone.ch</a>
+      </address>
+      <p class="label" style="margin-top:36px">Utile pour une première réponse</p>
+      <ul class="checklist">
+        <li>Le lieu : villa, hôtel, terrasse, événement</li>
+        <li>La hauteur sous plafond, ou « extérieur »</li>
+        <li>Le modèle et la finition qui vous attirent</li>
+        <li>Quelques photos de l'espace, pour votre film</li>
+        <li>Le délai souhaité</li>
+      </ul>
+    </div>
+    <form id="form" novalidate>
+      <div><label for="f-name">Nom</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div><label for="f-mail">E-mail</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+      <div><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
+      <div><label for="f-model">Modèle</label><select id="f-model" name="model"><option>Je ne sais pas encore</option></select></div>
+      <div class="full"><label for="f-msg">Votre projet</label><textarea id="f-msg" name="msg" placeholder="Lieu, hauteur sous plafond, intérieur ou extérieur, délai…"></textarea></div>
+      <div class="full"><button class="btn fill" type="submit">Envoyer la demande</button></div>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="band">
+  <div class="cols">
+    <div><img src="img/logo-dark.png" alt="Atelier Azar" style="margin-bottom:18px"><p>Lampes monumentales et objets hors échelle, imaginés à Genève.</p></div>
+    <div><h4>Pages</h4><nav><a href="collections.html">Collections</a><a href="films.html">Films &amp; Inspirations</a><a href="atelier.html">L'Atelier</a><a href="contact.html">Contact</a></nav></div>
+    <div><h4>Atelier</h4><p>Avenue de Châtelaine 36<br>CH-1203 Genève, Suisse</p></div>
+    <div><h4>Contact</h4><nav><a href="tel:+41227770070">+41 22 777 00 70</a><a href="mailto:info@redzone.ch">info@redzone.ch</a></nav></div>
+  </div>
+  <div class="legal"><span>© 2026 Atelier Azar Sàrl, Genève</span><span>Films et mises en situation réalisés par IA</span></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>
