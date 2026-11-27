@@ -20,7 +20,7 @@ Conseils : 8 à 15 s, en boucle, sans son, H.264, 2 à 5 Mo chacune. Compression
 ffmpeg -i film.mov -an -c:v libx264 -crf 24 -preset slow -vf scale=1920:-2 -movflags +faststart video/riviera.mp4
 ```
 
-L'attribut `poster="img/…jpg"` de chaque `<video>` est l'image affichée pendant le chargement : remplacez-la par une image tirée du film.
+L'attribut `poster="img/…webp"` de chaque `<video>` est l'image affichée pendant le chargement : remplacez-la par une image tirée du film.
 
 ## Formulaire de contact
 

@@ -6,6 +6,7 @@
 <title>Atelier Azar</title>
 <meta name="description" content="Atelier Azar, lampes monumentales de 3 à 4 mètres créées à Genève par Pascal Pupillo.">
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preload" as="image" href="img/scene-riviera.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -40,7 +41,7 @@ p{margin:0 0 1em}
 
 /* header */
 header{position:fixed;inset:0 0 auto;z-index:20;padding:calc(16px + env(safe-area-inset-top,0px)) max(4vw,16px,env(safe-area-inset-right,0px)) 16px max(4vw,16px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:#fff;transition:background .4s,color .4s,padding .4s,opacity .8s}
-header.solid{background:rgba(255,255,255,.96);color:var(--ink);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-block:calc(8px + env(safe-area-inset-top,0px)) 8px}
+header.solid{background:rgba(255,255,255,.96);color:var(--ink);border-bottom:1px solid var(--line);padding-block:calc(8px + env(safe-area-inset-top,0px)) 8px}
 .pill{display:inline-flex;align-items:center;gap:10px;min-height:42px;padding:0 20px;border:1px solid currentColor;border-radius:999px;background:none;color:inherit;font:400 12.5px Jost,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .3s,color .3s}
 .pill:hover,.pill:focus-visible{background:#fff;color:var(--ink);border-color:#fff}
 header.solid .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -60,7 +61,7 @@ header.solid .logo .ld{display:block}
 .drawer nav{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:calc(90px + env(safe-area-inset-top,0px)) max(6vw,24px) 48px}
 .drawer nav a{font:400 clamp(34px,4.6vw,56px)/1.2 "Cormorant Garamond",serif;text-decoration:none;transition:color .3s,padding .3s}
 .drawer nav a:hover{color:var(--gold);padding-left:8px}
-.drawer aside{background:var(--tint) url(img/scene-salon.jpg) center/cover;position:relative}
+.drawer aside{background:var(--tint) url(img/scene-salon.webp) center/cover;position:relative}
 .drawer .info{position:absolute;left:24px;right:24px;bottom:24px;background:#fff;border-radius:18px;padding:20px 22px;font-size:15px;color:var(--soft)}
 .drawer>button{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));left:max(4vw,16px);z-index:2;color:var(--ink)}
 .drawer .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -110,7 +111,7 @@ header.solid .logo .ld{display:block}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.grid{grid-template-columns:1fr}}
 .card{display:flex;flex-direction:column}
-.card .ph{position:relative;aspect-ratio:4/5;overflow:hidden;background:#1d1a17;cursor:zoom-in;border:0;padding:0;width:100%}
+.card .ph{position:relative;aspect-ratio:4/5;overflow:hidden;background:#2b241e;cursor:zoom-in;border:0;padding:0;width:100%}
 .card .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:transform 1.2s ease,opacity .35s}
 .card .ph:hover img{transform:scale(1.04)}
 .card .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:18px}
@@ -166,7 +167,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 /* gallery */
 .mosaic{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(120px,14vw,200px);gap:clamp(8px,1vw,14px)}
-.mosaic button{border:0;padding:0;overflow:hidden;cursor:zoom-in;background:#1d1a17}
+.mosaic button{border:0;padding:0;overflow:hidden;cursor:zoom-in;background:var(--tint)}
 .mosaic img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
 .mosaic button:hover img{transform:scale(1.04)}
 .m1{grid-column:span 4;grid-row:span 3}.m2{grid-column:span 2;grid-row:span 3}.m3{grid-column:span 2;grid-row:span 2}.m4{grid-column:span 2;grid-row:span 2}.m5{grid-column:span 2;grid-row:span 2}.m6{grid-column:span 3;grid-row:span 2}.m7{grid-column:span 3;grid-row:span 2}
@@ -214,6 +215,9 @@ footer a{text-decoration:none}
 .lb.pic{grid-template-columns:1fr}
 .lb.pic aside{display:none}
 @media(max-width:800px){.lb{grid-template-columns:1fr;align-content:start;overflow-y:auto}.lb img{max-height:62svh}}
+img.fx{opacity:0;transition:opacity .7s ease,transform 1.2s ease}
+img.fx.in{opacity:1}
+.films video{background:var(--tint)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -236,7 +240,7 @@ footer a{text-decoration:none}
 <main>
 <section class="hero" id="accueil">
   <!-- Remplacez video/riviera.mp4 par votre film IA (16:9, 1920×1080, 8 à 15 s, sans son, ~3 Mo) -->
-  <video class="v" autoplay muted loop playsinline preload="auto" poster="img/scene-riviera.jpg"><source src="video/riviera.mp4" type="video/mp4"></video>
+  <video class="v" autoplay muted loop playsinline preload="auto" poster="img/scene-riviera.webp"><source src="video/riviera.mp4" type="video/mp4"></video>
   <div class="opening" id="intro" aria-hidden="true">
     <img class="mono" src="img/mono-light.png" alt="">
     <svg viewBox="0 0 760 90"><text x="380" y="70" text-anchor="middle">ATELIER AZAR</text></svg>
@@ -282,12 +286,12 @@ footer a{text-decoration:none}
       <p>Chaque pièce est d'abord révélée en film, générée par intelligence artificielle, dans des lieux qui lui ressemblent : une terrasse au couchant, un jardin de palmiers, un salon face à la mer.</p>
     </div>
     <figure class="lead">
-      <video class="v" muted loop playsinline preload="metadata" poster="img/scene-terrasse.jpg"><source src="video/terrasse.mp4" type="video/mp4"></video>
+      <video class="v" muted loop playsinline preload="none" poster="img/scene-terrasse.webp"><source src="video/terrasse.mp4" type="video/mp4"></video>
       <figcaption><p class="label" style="color:#e6dccd">Omaya Silver XXL</p><h3>Une terrasse suspendue au-dessus des collines</h3></figcaption>
     </figure>
     <div class="row">
-      <figure><video class="v" muted loop playsinline preload="metadata" poster="img/scene-desert-champagne.jpg" style="height:100%;object-fit:cover"><source src="video/desert.mp4" type="video/mp4"></video></figure>
-      <figure><video class="v" muted loop playsinline preload="metadata" poster="img/scene-bali-terrasse.jpg" style="height:100%;object-fit:cover"><source src="video/bali.mp4" type="video/mp4"></video></figure>
+      <figure><video class="v" muted loop playsinline preload="none" poster="img/scene-desert-champagne.webp" style="height:100%;object-fit:cover"><source src="video/desert.mp4" type="video/mp4"></video></figure>
+      <figure><video class="v" muted loop playsinline preload="none" poster="img/scene-bali-terrasse.webp" style="height:100%;object-fit:cover"><source src="video/bali.mp4" type="video/mp4"></video></figure>
       <div class="note">
         <p class="label">Votre lieu, avant la fabrication</p>
         <h3 style="margin:12px 0 16px">Voir la lampe chez soi</h3>
@@ -315,7 +319,7 @@ footer a{text-decoration:none}
 
 <section class="band atelier" id="atelier" style="padding-top:0">
   <div class="wrap">
-    <img src="img/scene-salon.jpg" alt="Lampe Kailedo dans un salon ouvert sur l'océan au crépuscule" loading="lazy">
+    <img class="fx" src="img/scene-salon.webp" alt="Lampe Kailedo dans un salon ouvert sur l'océan au crépuscule" loading="lazy" decoding="async" width="1258" height="1022">
     <div class="txt">
       <p class="label">L'atelier</p>
       <h2 style="margin:12px 0 22px">Pascal Pupillo, rêver grand</h2>
@@ -398,18 +402,19 @@ const G=[['scene-riviera','Shanghai Black au bord d\'une piscine à débordement
 const st={};
 const grid=document.getElementById('grid');
 const card=c=>{st[c.id]={f:0,s:'XL'};return `<article class="card" data-id="${c.id}">
- <button class="ph" aria-label="Ouvrir la fiche ${c.name}"><img src="img/${c.f[0].img.XL}.jpg" alt="${c.name} ${c.f[0].n} XL à côté d'une personne de 1,80 m" loading="lazy"></button>
+ <button class="ph" aria-label="Ouvrir la fiche ${c.name}"><img class="fx" decoding="async" width="693" height="866" src="img/${c.f[0].img.XL}.webp" alt="${c.name} ${c.f[0].n} XL à côté d'une personne de 1,80 m" loading="lazy"></button>
  <div class="meta"><h3>${c.name}</h3><span>XL 3 m · XXL 4 m</span></div>
  <p class="desc">${c.d}</p>
  <div class="opts">${c.f.map((f,i)=>`<button data-f="${i}" aria-pressed="${i==0}">${f.n}</button>`).join('')}${['XL','XXL'].map(s=>`<button data-s="${s}" aria-pressed="${s=='XL'}">${s}</button>`).join('')}</div></article>`};
 grid.innerHTML=C.map(card).join('')+`<div class="card intro"><p class="label">Deux échelles</p><h3 style="margin:10px 0 12px">Chaque modèle existe en deux hauteurs</h3><p>Abat-jour noir doublé, socle massif, éclairage LED intégré selon les finitions.</p><dl><dt>XL</dt><dd>3,00 m de hauteur totale</dd><dt>XXL</dt><dd>4,00 m de hauteur totale</dd></dl></div>`;
-const upd=el=>{const c=C.find(x=>x.id==el.dataset.id),s=st[c.id],img=el.querySelector('img');img.src=`img/${c.f[s.f].img[s.s]}.jpg`;img.alt=`${c.name} ${c.f[s.f].n} ${s.s} à côté d'une personne de 1,80 m`;el.querySelectorAll('[data-f]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f==s.f));el.querySelectorAll('[data-s]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s==s.s))};
+const swap=(img,src)=>{if(img.getAttribute('src')==src)return;const pre=new Image();pre.src=src;const go=()=>{img.style.opacity=.35;setTimeout(()=>{img.src=src;img.style.opacity=''},160)};pre.decode?pre.decode().then(go,go):pre.onload=go};
+const upd=el=>{const c=C.find(x=>x.id==el.dataset.id),s=st[c.id],img=el.querySelector('img');swap(img,`img/${c.f[s.f].img[s.s]}.webp`);img.alt=`${c.name} ${c.f[s.f].n} ${s.s} à côté d'une personne de 1,80 m`;el.querySelectorAll('[data-f]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f==s.f));el.querySelectorAll('[data-s]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s==s.s))};
 grid.addEventListener('click',e=>{const el=e.target.closest('.card[data-id]');if(!el)return;const s=st[el.dataset.id],b=e.target.closest('button');if(!b)return;if(b.dataset.f!=null)s.f=+b.dataset.f;else if(b.dataset.s)s.s=b.dataset.s;else return openP(el.dataset.id);upd(el)});
 
 const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbInfo=document.getElementById('lbInfo');let last=null;
 const openLB=()=>{last=document.activeElement;lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus()};
 const closeLB=()=>{lb.hidden=true;document.body.style.overflow='';last&&last.focus()};
-const drawP=id=>{const c=C.find(x=>x.id==id),s=st[id],f=c.f[s.f],sp=c.s[s.s];lbImg.src=`img/${f.img[s.s]}.jpg`;lbImg.alt=`${c.name} ${f.n} ${s.s}, fiche à l'échelle`;
+const drawP=id=>{const c=C.find(x=>x.id==id),s=st[id],f=c.f[s.f],sp=c.s[s.s];lbImg.src=`img/${f.img[s.s]}.webp`;lbImg.alt=`${c.name} ${f.n} ${s.s}, fiche à l'échelle`;
  lbInfo.innerHTML=`<p class="label">Collection</p><h2 style="margin:8px 0 14px">${c.name} ${s.s}</h2><p style="color:var(--soft)">${c.d}</p>
  <div class="opts">${c.f.map((x,i)=>`<button data-f="${i}" aria-pressed="${i==s.f}">${x.n}</button>`).join('')}${['XL','XXL'].map(z=>`<button data-s="${z}" aria-pressed="${z==s.s}">${z}</button>`).join('')}</div>
  <table><tr><td>Abat-jour</td><td>${sp[0]}</td></tr><tr><td>Hauteur abat-jour</td><td>${sp[1]}</td></tr><tr><td>Hauteur totale</td><td>${sp[2]}</td></tr><tr><td>Finition</td><td>${f.n}</td></tr>${c.led?`<tr><td>Éclairage LED</td><td>${c.led}</td></tr>`:''}</table>
@@ -421,8 +426,8 @@ lb.addEventListener('click',e=>{if(e.target==lb)closeLB()});
 addEventListener('keydown',e=>{if(e.key=='Escape'&&!lb.hidden)closeLB()});
 
 const mos=document.getElementById('mosaic');
-mos.innerHTML=G.map((g,i)=>`<button class="m${i+1}" data-i="${i}" aria-label="Agrandir : ${g[1]}"><img src="img/${g[0]}.jpg" alt="${g[1]}" loading="lazy"></button>`).join('');
-mos.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const g=G[b.dataset.i];lb.classList.add('pic');lbImg.src=`img/${g[0]}.jpg`;lbImg.alt=g[1];openLB()});
+mos.innerHTML=G.map((g,i)=>`<button class="m${i+1}" data-i="${i}" aria-label="Agrandir : ${g[1]}"><img class="fx" src="img/${g[0]}.webp" alt="${g[1]}" loading="lazy" decoding="async"></button>`).join('');
+mos.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const g=G[b.dataset.i];lb.classList.add('pic');lbImg.src=`img/${g[0]}.webp`;lbImg.alt=g[1];openLB()});
 
 const sel=document.getElementById('f-model');
 C.forEach(c=>['XL','XXL'].forEach(s=>{const o=document.createElement('option');o.textContent=c.name+' '+s;sel.appendChild(o)}));
@@ -440,9 +445,15 @@ const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const vids=[...document.querySelectorAll('video.v')];
 const hero=vids[0],ht=document.getElementById('heroToggle');
 if(rm){vids.forEach(v=>{v.removeAttribute('autoplay');v.pause()});ht.textContent='Lecture';ht.setAttribute('aria-pressed','true')}
-const vio=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&!rm&&!(v==hero&&ht.getAttribute('aria-pressed')=='true')){const p=v.play();p&&p.catch(()=>{})}else v.pause()}),{threshold:.25});
+const vio=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&!rm&&!(v==hero&&ht.getAttribute('aria-pressed')=='true')){const p=v.play();p&&p.catch(()=>{})}else v.pause()}),{threshold:.01,rootMargin:'250px 0px'});
 vids.forEach(v=>vio.observe(v));
 ht.onclick=()=>{const paused=ht.getAttribute('aria-pressed')=='true';if(paused){hero.play().catch(()=>{});ht.textContent='Pause';ht.setAttribute('aria-pressed','false')}else{hero.pause();ht.textContent='Lecture';ht.setAttribute('aria-pressed','true')}};
+
+/* images: fade in once decoded; warm the cache with every variant so switching is instant */
+const fadeIn=img=>{const on=()=>img.classList.add('in');img.complete&&img.naturalWidth?on():img.addEventListener('load',on,{once:true});img.addEventListener('error',on,{once:true})};
+document.querySelectorAll('img.fx').forEach(fadeIn);
+const warm=()=>C.forEach(c=>c.f.forEach(f=>['XL','XXL'].forEach(z=>{const i=new Image();i.decoding='async';i.src=`img/${f.img[z]}.webp`})));
+addEventListener('load',()=>('requestIdleCallback' in window?requestIdleCallback(warm,{timeout:2500}):setTimeout(warm,1200)));
 
 /* intro: monogram wipe, name written, then hand over to header + headline */
 const root=document.documentElement,intro=document.getElementById('intro');
