@@ -10,18 +10,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* VOICE occasion, hushed luxury: a gallery of monumental light
+/* VOICE occasion, hushed luxury: a white gallery of monumental light
    IDEA the architect's elevation drawing: each lamp shown at true scale beside a person
-   PICTURE full-screen AI film of a lamp at an infinity pool, then a live scale drawing with ceiling slider
-   COLOUR white ground, ink #141210, night #0f0d0b bands, lamp-glow gold #b8864b
+   PICTURE full-screen AI film opened by the brand name being written, then a live scale drawing
+   COLOUR pure white ground (fixed, brand request), ink #141210, warm stone tint, lamp-glow gold #9a6b33
    TYPE Cormorant Garamond display + Jost text (geometric, like the logo lettering)
-   LAYOUT laptop: video full-bleed, logo centred in a split nav; phone: video full-screen, logo + menu */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0f0d0b);--ink:light-dark(#141210,#efe9df);--soft:light-dark(#5d5650,#b3aa9e);--line:light-dark(#e6e0d8,#2c2722);--tint:light-dark(#f6f2ec,#191512);--gold:light-dark(#9a6b33,#d0a067);--night:#0f0d0b;--nightink:#efe9df;--glow:#d0a067}
-:root[data-theme=light]{color-scheme:light}
-:root[data-theme=dark]{color-scheme:dark}
+   LAYOUT Menu top-left, logo centre, Contact pill top-right; video full-bleed; phone the same, compact */
+:root{color-scheme:light;--bg:#ffffff;--ink:#141210;--soft:#6b635b;--line:#e8e2da;--tint:#f7f4ef;--gold:#9a6b33;--night:#141210;--nightink:#ffffff;--glow:#9a6b33}
 *{box-sizing:border-box;min-width:0}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:72px}
 body{margin:0;background:var(--bg);color:var(--ink);font:300 16.5px/1.65 Jost,"Helvetica Neue",Arial,sans-serif;overflow-x:clip}
 img,video{display:block;max-width:100%}
 a{color:inherit}
@@ -31,33 +30,42 @@ h3{font-size:30px}
 p{margin:0 0 1em}
 .band{padding-block:clamp(64px,9vw,128px);padding-left:max(5vw,16px,env(safe-area-inset-left,0px));padding-right:max(5vw,16px,env(safe-area-inset-right,0px))}
 .wrap{max-width:1240px;margin:0 auto}
-.dark{background:var(--night);color:var(--nightink);--soft:#b3aa9e;--line:#2c2722;--gold:#d0a067}
 .label{font:400 13px/1.4 Jost,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 26px;border:1px solid currentColor;background:none;color:inherit;font:400 13px Jost,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .3s,color .3s}
-.btn:hover,.btn:focus-visible{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.dark .btn:hover,.hero .btn:hover{background:var(--nightink);color:var(--night);border-color:var(--nightink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 28px;border:1px solid currentColor;border-radius:999px;background:none;color:inherit;font:400 13px Jost,sans-serif;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.btn:hover,.btn:focus-visible{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.fill{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.fill:hover,.btn.fill:focus-visible{background:var(--gold);border-color:var(--gold)}
+.hero .btn{background:#fff;color:var(--ink);border-color:#fff}
+.hero .btn:hover{background:transparent;color:#fff}
 
 /* header */
-header{position:fixed;inset:0 0 auto;z-index:20;padding:calc(14px + env(safe-area-inset-top,0px)) max(5vw,16px,env(safe-area-inset-right,0px)) 14px max(5vw,16px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:#fff;transition:background .4s,color .4s,padding .4s}
-header.solid{background:color-mix(in srgb,var(--bg) 94%,transparent);color:var(--ink);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-block:calc(8px + env(safe-area-inset-top,0px)) 8px}
-header nav{display:flex;gap:clamp(18px,2.4vw,36px)}
-header nav.r{justify-content:flex-end}
-header nav a{font:400 12.5px Jost,sans-serif;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:8px 0;border-bottom:1px solid transparent}
-header nav a:hover{border-color:currentColor}
-.logo{display:block;width:clamp(120px,11vw,150px);transition:width .4s}
-header.solid .logo{width:104px}
+header{position:fixed;inset:0 0 auto;z-index:20;padding:calc(16px + env(safe-area-inset-top,0px)) max(4vw,16px,env(safe-area-inset-right,0px)) 16px max(4vw,16px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:#fff;transition:background .4s,color .4s,padding .4s,opacity .8s}
+header.solid{background:rgba(255,255,255,.96);color:var(--ink);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-block:calc(8px + env(safe-area-inset-top,0px)) 8px}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:42px;padding:0 20px;border:1px solid currentColor;border-radius:999px;background:none;color:inherit;font:400 12.5px Jost,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .3s,color .3s}
+.pill:hover,.pill:focus-visible{background:#fff;color:var(--ink);border-color:#fff}
+header.solid .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.menu-btn{justify-self:start;border-color:transparent;padding-left:4px}
+.menu-btn i{display:grid;gap:5px;width:22px}
+.menu-btn i::before,.menu-btn i::after{content:"";height:1.5px;background:currentColor}
+.menu-btn:hover{background:none!important;color:inherit!important;border-color:currentColor!important}
+.cta{justify-self:end}
+.logo{display:block;width:clamp(96px,9vw,128px);transition:width .4s}
+header.solid .logo{width:84px}
 .logo img{width:100%}
 .logo .ld{display:none}
 header.solid .logo .ll{display:none}
 header.solid .logo .ld{display:block}
-:root[data-theme=dark] header.solid .logo .ld{display:none}
-:root[data-theme=dark] header.solid .logo .ll{display:block}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]) header.solid .logo .ld{display:none}:root:not([data-theme=light]) header.solid .logo .ll{display:block}}
-.menu-btn{display:none;justify-self:end;background:none;border:0;color:inherit;font:400 12.5px Jost,sans-serif;letter-spacing:.2em;text-transform:uppercase;min-height:44px;cursor:pointer}
-@media(max-width:860px){header{grid-template-columns:1fr auto}header nav{display:none}.menu-btn{display:block}.logo{width:112px}}
-.drawer{position:fixed;inset:0;z-index:30;background:var(--night);color:var(--nightink);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:max(8vw,24px)}
-.drawer a{font:500 38px/1.3 "Cormorant Garamond",serif;text-decoration:none}
-.drawer button{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:max(5vw,16px);background:none;border:0;color:inherit;font:400 12.5px Jost;letter-spacing:.2em;text-transform:uppercase;min-height:44px;cursor:pointer}
+@media(max-width:520px){.menu-btn span,.cta span{display:none}.cta{padding:0 14px}.logo{width:84px}}
+.drawer{position:fixed;inset:0;z-index:30;background:#fff;color:var(--ink);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);animation:dIn .45s ease}
+.drawer nav{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:calc(90px + env(safe-area-inset-top,0px)) max(6vw,24px) 48px}
+.drawer nav a{font:400 clamp(34px,4.6vw,56px)/1.2 "Cormorant Garamond",serif;text-decoration:none;transition:color .3s,padding .3s}
+.drawer nav a:hover{color:var(--gold);padding-left:8px}
+.drawer aside{background:var(--tint) url(img/scene-salon.jpg) center/cover;position:relative}
+.drawer .info{position:absolute;left:24px;right:24px;bottom:24px;background:#fff;border-radius:18px;padding:20px 22px;font-size:15px;color:var(--soft)}
+.drawer>button{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));left:max(4vw,16px);z-index:2;color:var(--ink)}
+.drawer .pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+@keyframes dIn{from{opacity:0;transform:translateY(-12px)}}
+@media(max-width:760px){.drawer{grid-template-columns:1fr}.drawer aside{display:none}}
 
 /* hero */
 .hero{position:relative;height:100svh;min-height:560px;color:#fff;overflow:hidden;background:#1d1a17}
@@ -68,7 +76,23 @@ header.solid .logo .ld{display:block}
 .hero h1{font-size:clamp(44px,6.2vw,92px);font-weight:400;max-width:12ch}
 .hero p{font-size:18px;max-width:30em;margin:18px 0 0;color:#efe9df}
 .hero .ctl{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.vbtn{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.6);color:#fff;min-height:40px;padding:0 14px;font:400 12px Jost;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.vbtn{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.7);border-radius:999px;color:#fff;min-height:38px;padding:0 16px;font:400 12px Jost;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.hero .copy,header{opacity:1}
+.intro-on .hero .copy,.intro-on header{opacity:0;pointer-events:none}
+.hero .copy{transition:opacity 1.2s ease .2s}
+.opening{position:absolute;inset:0;z-index:3;display:grid;place-items:center;align-content:center;gap:clamp(14px,2.4vh,26px);color:#fff;pointer-events:none;transition:opacity 1.1s ease,transform 1.1s ease}
+.opening.out{opacity:0;transform:translateY(-3vh)}
+.opening .mono{width:clamp(110px,13vw,180px);clip-path:inset(100% 0 0 0);animation:wipe 1.6s cubic-bezier(.6,0,.2,1) .3s forwards;filter:drop-shadow(0 2px 18px rgba(0,0,0,.25))}
+.opening svg{width:min(86vw,620px);height:auto;overflow:visible}
+.opening text{font:400 64px Jost,sans-serif;letter-spacing:.32em;fill:#fff;fill-opacity:0;stroke:#fff;stroke-width:1.1;stroke-dasharray:420;stroke-dashoffset:420;animation:write 2.6s cubic-bezier(.45,0,.25,1) 1.2s forwards,fillin 1s ease 3.3s forwards}
+.opening .tag{font:italic 400 clamp(18px,2vw,24px) "Cormorant Garamond",serif;opacity:0;animation:fade 1s ease 3.6s forwards}
+@keyframes wipe{to{clip-path:inset(0 0 0 0)}}
+@keyframes write{to{stroke-dashoffset:0}}
+.intro-on .hero::after{background:rgba(10,8,6,.4)}
+@keyframes fillin{to{fill-opacity:1;stroke-width:0}}
+@keyframes fade{to{opacity:.9}}
+.hero.dim::after{background:rgba(10,8,6,.38)}
+.hero::after{transition:background 1.2s}
 .ai{font-size:13px;color:rgba(255,255,255,.8)}
 @media(max-width:700px){.hero .copy{grid-template-columns:1fr}.hero .copy>div:first-child{order:0;justify-self:start}.hero .ctl{flex-direction:row;flex-wrap:wrap;align-items:center}}
 
@@ -102,7 +126,9 @@ header.solid .logo .ld{display:block}
 .card.intro dd{margin:0;color:var(--soft);align-self:center}
 
 /* films */
-.films .lead{position:relative;aspect-ratio:16/8;min-height:340px;overflow:hidden;margin-bottom:clamp(16px,2vw,28px)}
+.films .lead{position:relative;aspect-ratio:16/8;min-height:340px;overflow:hidden;margin-bottom:clamp(16px,2vw,28px);border-radius:20px}
+.films .row figure,.card .ph,.mosaic button,.atelier img,.fig{border-radius:16px;overflow:hidden}
+.opts button{border-radius:999px}
 .films video{width:100%;height:100%;object-fit:cover}
 .films .lead figcaption{position:absolute;left:clamp(18px,3vw,40px);bottom:clamp(18px,3vw,40px);right:18px;max-width:30em;color:#fff;text-shadow:0 1px 18px rgba(0,0,0,.5)}
 .films .lead figcaption h3{font-size:clamp(28px,3.4vw,44px)}
@@ -161,29 +187,30 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 form{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px}
 form .full{grid-column:1/-1}
 form label{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
-form input,form select,form textarea{width:100%;font:300 16px Jost,sans-serif;color:var(--nightink);background:transparent;border:0;border-bottom:1px solid #4a423a;padding:10px 0;border-radius:0}
+.contact{background:var(--tint)}
+form input,form select,form textarea{width:100%;font:300 16px Jost,sans-serif;color:var(--ink);background:#fff;border:1px solid var(--line);padding:12px 18px;border-radius:999px}
+form textarea{border-radius:20px}
 form select option{color:#141210}
 form textarea{min-height:110px;resize:vertical}
 form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--glow)}
-.ok{grid-column:1/-1;border:1px solid var(--glow);padding:16px 18px;font-size:15.5px}
+.ok{grid-column:1/-1;border:1px solid var(--glow);border-radius:16px;background:#fff;padding:16px 18px;font-size:15.5px}
 @media(max-width:860px){.contact .wrap{grid-template-columns:1fr}}
 @media(max-width:520px){form{grid-template-columns:1fr}}
 
-footer{border-top:1px solid #2c2722;padding-block:36px calc(36px + env(safe-area-inset-bottom,0px))}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;font-size:14px;color:#b3aa9e}
-footer img{width:110px}
+footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;font-size:14px;color:var(--soft)}
+footer img{width:96px}
 footer nav{display:flex;flex-wrap:wrap;gap:22px}
 footer a{text-decoration:none}
 
 /* lightbox */
-.lb{position:fixed;inset:0;z-index:40;background:rgba(10,8,6,.94);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:32px;align-items:center;padding:calc(56px + env(safe-area-inset-top,0px)) max(5vw,16px) calc(32px + env(safe-area-inset-bottom,0px));color:#efe9df}
-.lb img{max-height:calc(100svh - 120px);margin:0 auto;object-fit:contain}
-.lb .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:max(5vw,16px);background:none;border:0;color:inherit;font:400 12.5px Jost;letter-spacing:.2em;text-transform:uppercase;min-height:44px;cursor:pointer}
+.lb{position:fixed;inset:0;z-index:40;background:rgba(255,255,255,.98);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:32px;align-items:center;padding:calc(64px + env(safe-area-inset-top,0px)) max(5vw,16px) calc(32px + env(safe-area-inset-bottom,0px));color:var(--ink)}
+.lb img{max-height:calc(100svh - 120px);margin:0 auto;object-fit:contain;border-radius:16px}
+.lb .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:max(5vw,16px)}
+.lb .x:hover{background:var(--ink);color:#fff}
 .lb table{width:100%;border-collapse:collapse;font-size:15px;margin-top:18px}
-.lb td{padding:9px 0;border-bottom:1px solid #2c2722}
+.lb td{padding:9px 0;border-bottom:1px solid var(--line)}
 .lb td+td{text-align:right;white-space:nowrap}
-.lb .opts button{color:#efe9df;border-color:#4a423a}
-.lb .opts button[aria-pressed=true]{border-color:#efe9df}
 .lb.pic{grid-template-columns:1fr}
 .lb.pic aside{display:none}
 @media(max-width:800px){.lb{grid-template-columns:1fr;align-content:start;overflow-y:auto}.lb img{max-height:62svh}}
@@ -192,25 +219,29 @@ footer a{text-decoration:none}
 </head>
 <body>
 
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!sessionStorage.getItem('azarIntro'))document.documentElement.classList.add('intro-on')}catch(e){document.documentElement.classList.add('intro-on')}</script>
 <header id="top">
-  <nav aria-label="Navigation principale">
-    <a href="#collections">Collections</a><a href="#films">Films</a><a href="#echelle">Échelle</a>
-  </nav>
+  <button class="pill menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer"><i></i><span>Menu</span></button>
   <a class="logo" href="#accueil" aria-label="Atelier Azar, accueil"><img class="ll" src="img/logo-light.png" alt="Atelier Azar"><img class="ld" src="img/logo-dark.png" alt=""></a>
-  <nav class="r" aria-label="Navigation secondaire">
-    <a href="#atelier">L'atelier</a><a href="#inspirations">Inspirations</a><a href="#contact">Contact</a>
-  </nav>
-  <button class="menu-btn" id="menuBtn" aria-expanded="false">Menu</button>
+  <a class="pill cta" href="#contact"><span>Contact</span><span aria-hidden="true" style="display:inline">→</span></a>
 </header>
 <div class="drawer" id="drawer" hidden>
-  <button id="drawerClose">Fermer</button>
-  <a href="#collections">Collections</a><a href="#films">Films</a><a href="#echelle">Échelle</a><a href="#atelier">L'atelier</a><a href="#inspirations">Inspirations</a><a href="#contact">Contact</a>
+  <button class="pill" id="drawerClose">Fermer</button>
+  <nav aria-label="Menu">
+    <a href="#collections">Collections</a><a href="#films">Les films</a><a href="#echelle">Penser à l'échelle</a><a href="#atelier">L'atelier</a><a href="#inspirations">Inspirations</a><a href="#projet">Un projet</a><a href="#contact">Contact</a>
+  </nav>
+  <aside><p class="info">Atelier Azar Sàrl · Avenue de Châtelaine 36, CH-1203 Genève<br>+41 22 777 00 70 · info@redzone.ch</p></aside>
 </div>
 
 <main>
 <section class="hero" id="accueil">
   <!-- Remplacez video/riviera.mp4 par votre film IA (16:9, 1920×1080, 8 à 15 s, sans son, ~3 Mo) -->
   <video class="v" autoplay muted loop playsinline preload="auto" poster="img/scene-riviera.jpg"><source src="video/riviera.mp4" type="video/mp4"></video>
+  <div class="opening" id="intro" aria-hidden="true">
+    <img class="mono" src="img/mono-light.png" alt="">
+    <svg viewBox="0 0 760 90"><text x="380" y="70" text-anchor="middle">ATELIER AZAR</text></svg>
+    <p class="tag">Lampes monumentales, Genève</p>
+  </div>
   <div class="copy">
     <div>
       <h1>La lumière devient sculpture</h1>
@@ -244,7 +275,7 @@ footer a{text-decoration:none}
   </div>
 </section>
 
-<section class="band dark films" id="films">
+<section class="band films" id="films" style="padding-top:0">
   <div class="wrap">
     <div class="head">
       <h2>Les films</h2>
@@ -261,7 +292,7 @@ footer a{text-decoration:none}
         <p class="label">Votre lieu, avant la fabrication</p>
         <h3 style="margin:12px 0 16px">Voir la lampe chez soi</h3>
         <p>Envoyez quelques photos de votre espace : nous réalisons un film IA de la pièce choisie, à l'échelle, dans votre décor. Vous validez la proportion et la finition avant que l'atelier ne commence.</p>
-        <p><a class="btn" href="#contact">Demander un film</a></p>
+        <p><a class="btn fill" href="#contact">Demander un film</a></p>
       </div>
     </div>
   </div>
@@ -315,11 +346,11 @@ footer a{text-decoration:none}
   </div>
 </section>
 
-<section class="band dark contact" id="contact">
+<section class="band contact" id="contact">
   <div class="wrap">
     <div>
       <h2>Parlons de votre lieu</h2>
-      <p style="margin-top:18px;color:#b3aa9e">Chaque pièce est réalisée à la demande. Décrivez votre projet, nous revenons vers vous avec une proposition et un premier film.</p>
+      <p style="margin-top:18px;color:var(--soft)">Chaque pièce est réalisée à la demande. Décrivez votre projet, nous revenons vers vous avec une proposition et un premier film.</p>
       <address>
         Atelier Azar Sàrl<br>
         Avenue de Châtelaine 36<br>
@@ -334,22 +365,22 @@ footer a{text-decoration:none}
       <div><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
       <div><label for="f-model">Modèle</label><select id="f-model" name="model"><option>Je ne sais pas encore</option></select></div>
       <div class="full"><label for="f-msg">Votre projet</label><textarea id="f-msg" name="msg" placeholder="Lieu, hauteur sous plafond, intérieur ou extérieur, délai…"></textarea></div>
-      <div class="full"><button class="btn" type="submit">Envoyer la demande</button></div>
+      <div class="full"><button class="btn fill" type="submit">Envoyer la demande</button></div>
     </form>
   </div>
 </section>
 </main>
 
-<footer class="dark band">
+<footer class="band">
   <div class="wrap">
-    <img src="img/logo-light.png" alt="Atelier Azar">
+    <img src="img/logo-dark.png" alt="Atelier Azar">
     <nav><a href="#collections">Collections</a><a href="#films">Films</a><a href="#atelier">L'atelier</a><a href="#contact">Contact</a></nav>
     <span>© 2026 Atelier Azar Sàrl, Genève</span>
   </div>
 </footer>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fiche produit">
-  <button class="x" id="lbClose">Fermer</button>
+  <button class="x pill" id="lbClose">Fermer</button>
   <img id="lbImg" alt="">
   <aside id="lbInfo"></aside>
 </div>
@@ -379,7 +410,7 @@ const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lb
 const openLB=()=>{last=document.activeElement;lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus()};
 const closeLB=()=>{lb.hidden=true;document.body.style.overflow='';last&&last.focus()};
 const drawP=id=>{const c=C.find(x=>x.id==id),s=st[id],f=c.f[s.f],sp=c.s[s.s];lbImg.src=`img/${f.img[s.s]}.jpg`;lbImg.alt=`${c.name} ${f.n} ${s.s}, fiche à l'échelle`;
- lbInfo.innerHTML=`<p class="label" style="color:#b3aa9e">Collection</p><h2 style="margin:8px 0 14px">${c.name} ${s.s}</h2><p style="color:#b3aa9e">${c.d}</p>
+ lbInfo.innerHTML=`<p class="label">Collection</p><h2 style="margin:8px 0 14px">${c.name} ${s.s}</h2><p style="color:var(--soft)">${c.d}</p>
  <div class="opts">${c.f.map((x,i)=>`<button data-f="${i}" aria-pressed="${i==s.f}">${x.n}</button>`).join('')}${['XL','XXL'].map(z=>`<button data-s="${z}" aria-pressed="${z==s.s}">${z}</button>`).join('')}</div>
  <table><tr><td>Abat-jour</td><td>${sp[0]}</td></tr><tr><td>Hauteur abat-jour</td><td>${sp[1]}</td></tr><tr><td>Hauteur totale</td><td>${sp[2]}</td></tr><tr><td>Finition</td><td>${f.n}</td></tr>${c.led?`<tr><td>Éclairage LED</td><td>${c.led}</td></tr>`:''}</table>
  <p style="margin-top:24px"><a class="btn" href="#contact" data-close>Demander un devis</a></p>`;lbInfo.dataset.id=id};
@@ -412,6 +443,11 @@ if(rm){vids.forEach(v=>{v.removeAttribute('autoplay');v.pause()});ht.textContent
 const vio=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&!rm&&!(v==hero&&ht.getAttribute('aria-pressed')=='true')){const p=v.play();p&&p.catch(()=>{})}else v.pause()}),{threshold:.25});
 vids.forEach(v=>vio.observe(v));
 ht.onclick=()=>{const paused=ht.getAttribute('aria-pressed')=='true';if(paused){hero.play().catch(()=>{});ht.textContent='Pause';ht.setAttribute('aria-pressed','false')}else{hero.pause();ht.textContent='Lecture';ht.setAttribute('aria-pressed','true')}};
+
+/* intro: monogram wipe, name written, then hand over to header + headline */
+const root=document.documentElement,intro=document.getElementById('intro');
+const endIntro=()=>{if(!root.classList.contains('intro-on'))return;intro.classList.add('out');root.classList.remove('intro-on');try{sessionStorage.setItem('azarIntro','1')}catch(e){}};
+if(root.classList.contains('intro-on')){setTimeout(endIntro,5600);addEventListener('wheel',endIntro,{once:true,passive:true});addEventListener('touchmove',endIntro,{once:true,passive:true});addEventListener('keydown',endIntro,{once:true})}else intro.hidden=true;
 
 /* scale drawing */
 const fig=document.getElementById('fig'),ceil=document.getElementById('ceil'),out=document.getElementById('ceilOut'),ver=document.getElementById('verdict');
